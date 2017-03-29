@@ -1,0 +1,13 @@
+.form {
+  border: 2px solid black;
+  border-radius: 7px;
+  font-family: sans-serif;
+  width: 80%;
+  margin-left: auto;
+}
+
+.form-half {
+  width: 45%;
+  text-align: center;
+  display: inline-block;
+}

@@ -1,18 +1,57 @@
 <!DOCTYPE html>
-<html>
+
+<html ng-app="notebook">
   <head>
     <meta charset="utf-8">
-    <title>Musician a Register</title>
+    <title>studio lesson notebooks</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
     <link rel="stylesheet" href="/style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-route.js"></script>
+
+    <script src="/js/module.js" charset="utf-8"></script>
+    <script src="/js/controller.teacher.js" charset="utf-8"></script>
+    <script src="/js/controller.student.js" charset="utf-8"></script>
+    <script src="/js/factory.studio.js" charset="utf-8"></script>
+
   </head>
+
   <body>
-    <form class="" action="index.html" method="post">
-      <div class="form-half">
+  <div class="jumbotron">
+    <div class="container">
+      <h2>Alan's Classical Guitar Music Studio</h2>
+    </div>
+  </div>
 
-      </div>
-      <label>name</label>
+  <nav class="nav navbar-default">
+    <div class="container guitar-match">
 
-    </form>
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#!/">Home</a>
+        </li>
+        <li>
+          <a ng-href="#!/student">Students</a>
+        </li>
+        <li>
+          <a href="#!/teacher">Teacher</a>
+        </li>
+      </ul>
 
-  </body>
+    </div>
+  </nav>
+
+  <ng-view></ng-view>
+
+  <!-- add messaging stuff here
+  <section>
+
+  </section> -->
+
+
+
+</body>
 </html>

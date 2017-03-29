@@ -1,0 +1,27 @@
+{
+  "name": "music-lesson-studio",
+  "version": "1.0.0",
+  "description": "App to help manage music lesson activities",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlanBCole/musicLessonStudio.git"
+  },
+  "author": "Alan Cole",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlanBCole/musicLessonStudio/issues"
+  },
+  "homepage": "https://github.com/AlanBCole/musicLessonStudio#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "colors": "^1.1.2",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.2",
+    "morgan": "^1.8.1"
+  }
+}

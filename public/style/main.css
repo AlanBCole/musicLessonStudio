@@ -1,13 +1,44 @@
-.form {
-  border: 2px solid black;
-  border-radius: 7px;
-  font-family: sans-serif;
-  width: 80%;
-  margin-left: auto;
+.guitar {
+  background-image: url("/style/early-guitar-body.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 800px;
+  /*top: -50px;*/
+  background-position: center;
 }
 
-.form-half {
-  width: 45%;
+.gutiar-match {
+  width: 80%;
+}
+
+.empty {
+  background-color: #F5F5F5;
+  border: 2px dashed #D8D8D8;
+  border-radius: 5px;
+  height: 500px;
+  padding: 200px 0;
+  color: #777777;
   text-align: center;
-  display: inline-block;
+}
+
+.add-lesson {
+  color: #777777;
+  position: relative;
+  top: 5px;
+  padding-right: 1rem;
+}
+
+.add-lesson-btn {
+  color: #C4C4C4;
+}
+
+.add-note-btn {
+  padding-left: 1rem;
+  position: relative;
+  top: 1px;
+  font-size: 1.5rem;
+}
+
+.dark-text {
+  color: #777777;
 }

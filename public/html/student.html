@@ -1,0 +1,88 @@
+<!-- <!DOCTYPE html>
+<html ng-app="notebook">
+  <head>
+    <meta charset="utf-8">
+    <title>Student's Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+
+    <script src="/module.js" charset="utf-8"></script>
+    <script src="/controller.student.js" charset="utf-8"></script>
+    <script src="/factory.studio.js" charset="utf-8"></script>
+  </head>
+
+  <body ng-controller="studentController as student">
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Alan's Classical Guitar Music Studio</h2>
+      </div>
+    </div> -->
+
+    <div class="container-fluid dark-text">
+
+      <div class="row">
+
+        <nav class="col-sm-2">
+          <!-- list of students. click on one and show that student's  -->
+          <div class="list-group">
+            <button ng-click="student.showNotebook(pupil)" ng-repeat="pupil in student.students" type="button" class="list-group-item">{{pupil.name}}</button>
+          </div>
+        </nav>
+
+        <!-- notebook section  -->
+          <!-- empty notebook -->
+        <section class="col-sm-9 empty" ng-show="!student.activeStudent">
+          <h3>click on a student's name to see his or her notebook</h3>
+        </section>
+        <!-- student notebook -->
+        <section class="col-sm-9" ng-show="student.activeStudent">
+          <div class="page-header">
+            <h3>{{student.activeStudent.name}}'s notebook</h3>
+          </div>
+
+          <!-- <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 btn btn-warning btn-large" ng-click="teacher.newLesson()">
+              add a new lesson for {{teacher.activeStudent.name}}
+            </div>
+          </div> -->
+
+          <div class="panel panel-default" ng-repeat="lesson in student.activeStudent.notebook">
+
+            <div class="panel-heading">
+              <h1>{{lesson.date}}  <small>{{lesson.lessonTheme}}</small></h1>
+            </div>
+            <!-- list individual practice items -->
+            <div class="panel-body">
+
+              <ul><h4>Tonalization:</h4>
+                <li ng-repeat="item in lesson.practiceItems.tonalization">{{item}}</li>
+              </ul>
+              <ul><h4>Working Piece:</h4>
+                <li ng-repeat="item in lesson.practiceItems.workingPiece">{{item}}</li>
+              </ul>
+              <ul><h4>Review:</h4>
+                <li ng-repeat="item in lesson.practiceItems.review">{{item}}</li>
+              </ul>
+              <ul><h4>Listen:</h4>
+                <li ng-repeat="item in lesson.practiceItems.listen">{{item}}</li>
+              </ul>
+              <ul><h4>Other:</h4>
+                <li ng-repeat="item in lesson.practiceItems.other">{{item}}</li>
+              </ul>
+
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+    <!-- add messaging stuff here -->
+    <!-- <section>
+
+    </section>
+
+  </body>
+</html> -->

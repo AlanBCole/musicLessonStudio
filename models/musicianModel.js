@@ -15,16 +15,18 @@ var musicianSchema = mongoose.Schema({
   ],
   startedAt: {type: Number, default : ()=> Date.now()},
   notebook: [
-    date: {type: Number, default: ()=> Date.now()},
-    lessonTheme: String,
-    practiceArea: {
-      tonalization: Array,
-      workingPiece: Array,
-      review: Array,
-      listen: Array,
-      other: Array
-    },
-    comments: Array
+    {
+      date: {type: Number, default: ()=> Date.now()},
+      lessonTheme: String,
+      practiceArea: {
+        tonalization: Array,
+        workingPiece: Array,
+        review: Array,
+        listen: Array,
+        other: Array
+      },
+      comments: Array
+    }
   ]
 });
 
