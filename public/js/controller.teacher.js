@@ -7,23 +7,36 @@ function  tCtrl (studio) {
 
   var teacher = this;
   window.teacher = teacher;
-  teacher.students = studio.studentList;
-  teacher.notebookEdit = function (student) {
+  teacher.students = [];
+
+  teacher.getStudents = function () {
+    studio
+      .getMusician()
+        .then(function(response) {
+          console.log(response.data);
+          teacher.students = response.data;
+
+        })
+  }
+
+  teacher.studentSelect = function (student) {
     teacher.activeStudent = student;
+    console.log(teacher.activeStudent.name + "'s notebook");
   }
 
   teacher.newLesson = function () {
-    console.log(teacher.activeStudent.name);
+    console.log("Adding a lesson...");
     var lesson = {
         date: "date",
         lessonTheme: "lesson theme",
-        practiceItems: {
+        practiceArea: {
           tonalization: [],
           workingPiece: [],
           review: [],
           listen: [],
           other: [],
         },
+        comments: []
       };
 
     teacher.activeStudent.notebook.unshift(lesson);
@@ -41,32 +54,39 @@ function  tCtrl (studio) {
     var answer = confirm("Are you sure you want to remove this lesson from " + teacher.activeStudent.name + "'s notebook?");
 
     if (answer) {
-      lesson.practiceItems[area].splice(lesson.practiceItems[area].indexOf(note), 1);
+      lesson.practiceArea[area].splice(lesson.practiceArea[area].indexOf(note), 1);
+      console.log("deleting note...");
     }
   }
 
   teacher.addNote = function(lesson, area){
-    console.log("working...");
+    console.log("adding a note...");
     teacher.activeNote = lesson;
-    teacher.activeNote.practiceItems[area].push("New note...");
+    teacher.activeNote.practiceArea[area].push("New note...");
   }
 
   teacher.headingEdit = function () {
-    teacher.heading = true;
+    teacher.theme = true;
   }
 
   teacher.headingSave = function () {
-    teacher.heading = false;
+    teacher.theme = false;
   }
 
-  teacher.noteEdit = function (letter) {
+  teacher.noteEdit = function () {
     teacher.edit = true;
-    console.log("clicked!");
+    console.log("editing a note...");
+    studio
+      .updateMusician(teacher.activeStudent)
+      .then(function(response){
+        console.log("saving...", response);
+      })
   }
 
   teacher.noteSave = function (letter) {
     // teacher.edit = false;
     teacher.edit = false;
-  }
 
+  }
+  teacher.getStudents();
 }

@@ -28,7 +28,7 @@
       <nav class="col-sm-2">
         <!-- list of students. click on one and show that student's notebook -->
         <div class="list-group">
-          <button ng-click="teacher.notebookEdit(student)" ng-repeat="student in teacher.students" type="button" class="list-group-item">{{student.name}}</button>
+          <button ng-click="teacher.studentSelect(student)" ng-repeat="student in teacher.students" type="button" class="list-group-item">{{student.name}}</button>
         </div>
       </nav>
 
@@ -64,7 +64,7 @@
             <h3 ng-click="teacher.headingEdit()" ng-show="!teacher.heading">{{lesson.date}}  <small>{{lesson.lessonTheme}}</small></h3>
             <input type="text" ng-model="lesson.date" ng-show="teacher.heading" ng-blur="teacher.headingSave()">
             <input type="text" ng-model="lesson.lessonTheme" ng-show="teacher.heading" ng-blur="teacher.headingSave()">
-           </div>
+          </div>
 
           <!-- list individual practice areas and notes -->
           <div class="panel-body">
@@ -76,12 +76,12 @@
                 <!-- </button> -->
               </h4>
               <!-- normal outline view switches to edit on click -->
-              <li ng-repeat="note in lesson.practiceItems.tonalization track by $index">
+              <li ng-repeat="note in lesson.practiceArea.tonalization track by $index">
                 <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit" ng-show="!teacher.edit">{{note}}</span>
 
                 <!-- div grouping note editing stuff -->
                 <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceItems.tonalization[$index]">
+                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.tonalization[$index]">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'tonalization')" type="button">&times;</button>
                   </span>
@@ -94,10 +94,10 @@
               <h4>Working Piece
                 <span ng-click="teacher.addNote(lesson, 'workingPiece')" class="glyphicon glyphicon-plus add-note-btn" ></span>
               </h4>
-              <li ng-repeat="note in lesson.practiceItems.workingPiece track by $index">
+              <li ng-repeat="note in lesson.practiceArea.workingPiece track by $index">
                 <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit">{{note}}</span>
                 <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceItems.workingPiece[$index]">
+                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.workingPiece[$index]">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'workingPiece')" type="button">&times;</button>
                   </span>
@@ -112,10 +112,10 @@
               <h4>Review
                 <span ng-click="teacher.addNote(lesson, 'review')" class="glyphicon glyphicon-plus add-note-btn"></span>
               </h4>
-              <li ng-repeat="note in lesson.practiceItems.review track by $index">
+              <li ng-repeat="note in lesson.practiceArea.review track by $index">
                 <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit">{{note}}</span>
                 <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceItems.review[$index]">
+                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.review[$index]">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'review')" type="button">&times;</button>
                   </span>
@@ -130,10 +130,10 @@
               <h4>Listen
                 <span ng-click="teacher.addNote(lesson, 'listen')" class="glyphicon glyphicon-plus add-note-btn"></span>
               </h4>
-              <li ng-repeat="note in lesson.practiceItems.listen track by $index">
+              <li ng-repeat="note in lesson.practiceArea.listen track by $index">
                 <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit">{{note}}</span>
                 <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceItems.listen[$index]">
+                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.listen[$index]">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'listen')" type="button">&times;</button>
                   </span>
@@ -147,10 +147,10 @@
               <h4>Other
                 <span ng-click="teacher.addNote(lesson, 'other')" class="glyphicon glyphicon-plus add-note-btn"></span>
               </h4>
-              <li ng-repeat="note in lesson.practiceItems.other track by $index">
+              <li ng-repeat="note in lesson.practiceArea.other track by $index">
                 <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit">{{note}}</span>
                 <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceItems.other[$index]">
+                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.other[$index]">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'other')" type="button">&times;</button>
                   </span>

@@ -1,15 +1,15 @@
 angular.module("notebook")
-  .factory("studio", studiofFact)
+  .factory("studio", studioFact)
 
 studioFact.$inject = ['$http'];
 
-function studioFact($http) {
+function studioFact ($http) {
 
 // create
   function createMusician (musicianData) {
     return $http({
       method: 'POST',
-      url: '/api/musician'
+      url: '/api/musician',
       data: musicianData
     })
   }
@@ -23,19 +23,25 @@ function studioFact($http) {
   }
 
   // update
-  function updateBallot(musician){
+  function updateMusician(musician){
     return $http({
       method : 'PUT',
       url    : '/api/musician/' + musician._id,
       data   : musician
     })
+
+    // 'delete'
+    // function removeMusician(musician){
+    //   method : 'PUT',
+    //   url    : 'api/remove/' + musician._id
+    // }
   }
 
 
   return {
-    createBallot : createBallot,
-    getBallot    : getBallot,
-    updateBallot : updateBallot
+    createMusician : createMusician,
+    getMusician    : getMusician,
+    updateMusician: updateMusician
   }
 }
   // var students = [
