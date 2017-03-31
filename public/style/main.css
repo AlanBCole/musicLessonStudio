@@ -1,3 +1,12 @@
+body {
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+  margin-left: 1rem;
+}
+
 .guitar {
   background-image: url("/style/early-guitar-body.jpg");
   background-size: cover;
@@ -28,6 +37,10 @@
   padding-right: 1rem;
 }
 
+.heading-inline {
+  display: inline;
+}
+
 .add-lesson-btn {
   color: #C4C4C4;
 }
@@ -38,6 +51,7 @@
   top: 1px;
   font-size: 1.5rem;
 }
+
 
 .dark-text {
   color: #777777;

@@ -28,17 +28,23 @@
       <nav class="col-sm-2">
         <!-- list of students. click on one and show that student's notebook -->
         <div class="list-group">
-          <button ng-click="teacher.studentSelect(student)" ng-repeat="student in teacher.students" type="button" class="list-group-item">{{student.name}}</button>
+          <button
+            ng-repeat="student in teacher.students"
+            ng-click="teacher.studentSelect(student)"
+            type="button" class="list-group-item">
+            {{student.name}}
+          </button>
         </div>
       </nav>
 
       <!-- notebook section  -->
-        <!-- empty notebook -->
-      <section class="col-sm-9 empty" ng-show="!teacher.activeStudent">
+        <!-- shows when no student is selected  -->
+      <section class="col-sm-9 empty" ng-show="!teacher.studentSelected">
         <h3>click on a student's name to see his or her notebook</h3>
       </section>
-      <!-- student notebook -->
-      <section class="col-sm-9" ng-show="teacher.activeStudent">
+
+        <!-- selected student's notebook -->
+      <section class="col-sm-9" ng-show="teacher.studentSelected">
 
         <div class="page-header">
           <button ng-click="teacher.newLesson()" class="pull-right btn btn-default add-lesson-btn">
@@ -46,13 +52,6 @@
           </button>
           <p class="pull-right add-lesson">add a new lesson</p>
           <h3>{{teacher.activeStudent.name}}'s notebook</h3>
-          <!-- add lesson button -->
-
-          <!-- <div class="row">
-            <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 btn btn-warning btn-large" ng-click="teacher.newLesson()">
-              add lesson for {{teacher.activeStudent.name}}
-            </div>
-          </div> -->
         </div>
 
 
@@ -61,9 +60,10 @@
           <!-- notebook lesson header -->
           <div class="panel-heading">
             <button ng-click="teacher.deleteLesson(lesson)" type="button" class="close" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-            <h3 ng-click="teacher.headingEdit()" ng-show="!teacher.heading">{{lesson.date}}  <small>{{lesson.lessonTheme}}</small></h3>
-            <input type="text" ng-model="lesson.date" ng-show="teacher.heading" ng-blur="teacher.headingSave()">
-            <input type="text" ng-model="lesson.lessonTheme" ng-show="teacher.heading" ng-blur="teacher.headingSave()">
+            <h3 class="heading-inline">{{lesson.date | date}}</h3>
+            <h3 class="heading-inline" ng-click="teacher.themeEdit()" ng-show="!teacher.theme"><small>{{lesson.lessonTheme}}</small></h3>
+            <!-- <input type="text" ng-model="lesson.date" ng-show="teacher.heading" ng-blur="teacher.headingSave()"> -->
+            <input type="text" ng-model="lesson.lessonTheme" ng-show="teacher.theme" ng-blur="teacher.themeSave()">
           </div>
 
           <!-- list individual practice areas and notes -->
@@ -77,11 +77,11 @@
               </h4>
               <!-- normal outline view switches to edit on click -->
               <li ng-repeat="note in lesson.practiceArea.tonalization track by $index">
-                <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit" ng-show="!teacher.edit">{{note}}</span>
+                <span ng-click="teacher.noteEdit(note, 'tonalization')" ng-show="!note.edit">{{note.text}}</span>
 
                 <!-- div grouping note editing stuff -->
-                <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.tonalization[$index]">
+                <div ng-show="note.edit" class="input-group">
+                  <input ng-blur="teacher.noteSave(note, 'tonalization')" type="text" class="form-control" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'tonalization')" type="button">&times;</button>
                   </span>
@@ -89,22 +89,18 @@
               </li>
             </ul>
 
-
             <ul>
               <h4>Working Piece
                 <span ng-click="teacher.addNote(lesson, 'workingPiece')" class="glyphicon glyphicon-plus add-note-btn" ></span>
               </h4>
               <li ng-repeat="note in lesson.practiceArea.workingPiece track by $index">
-                <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit">{{note}}</span>
-                <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.workingPiece[$index]">
+                <span ng-click="teacher.noteEdit(note, 'workingPiece')" ng-show="!note.edit">{{note.text}}</span>
+                <div ng-show="note.edit" class="input-group">
+                  <input ng-blur="teacher.noteSave(note, 'workingPiece')" type="text" class="form-control" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'workingPiece')" type="button">&times;</button>
                   </span>
                 </div>
-
-
-                <!-- <input type="text" ng-blur="teacher.noteSave()" class="form-control" ng-show="teacher.edit" ng-model="lesson.practiceItems.workingPiece[$index]"> -->
               </li>
             </ul>
 
@@ -113,16 +109,13 @@
                 <span ng-click="teacher.addNote(lesson, 'review')" class="glyphicon glyphicon-plus add-note-btn"></span>
               </h4>
               <li ng-repeat="note in lesson.practiceArea.review track by $index">
-                <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit">{{note}}</span>
-                <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.review[$index]">
+                <span ng-click="teacher.noteEdit(note, 'review')" ng-show="!note.edit">{{note.text}}</span>
+                <div ng-show="note.edit" class="input-group">
+                  <input ng-blur="teacher.noteSave(note, 'review')" type="text" class="form-control" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'review')" type="button">&times;</button>
                   </span>
                 </div>
-
-
-                <!-- <input type="text" ng-blur="teacher.noteSave()" class="form-control" ng-show="teacher.edit" ng-model="lesson.practiceItems.review[$index]"> -->
               </li>
             </ul>
 
@@ -131,15 +124,13 @@
                 <span ng-click="teacher.addNote(lesson, 'listen')" class="glyphicon glyphicon-plus add-note-btn"></span>
               </h4>
               <li ng-repeat="note in lesson.practiceArea.listen track by $index">
-                <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit">{{note}}</span>
-                <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.listen[$index]">
+                <span ng-click="teacher.noteEdit(note, 'listen')" ng-show="!note.edit">{{note.text}}</span>
+                <div ng-show="note.edit" class="input-group">
+                  <input ng-blur="teacher.noteSave(note, 'listen')" type="text" class="form-control" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'listen')" type="button">&times;</button>
                   </span>
                 </div>
-
-                <!-- <input type="text" ng-blur="teacher.noteSave()" class="form-control" ng-show="teacher.edit" ng-model="lesson.practiceItems.listen[$index]"> -->
               </li>
             </ul>
 
@@ -148,22 +139,20 @@
                 <span ng-click="teacher.addNote(lesson, 'other')" class="glyphicon glyphicon-plus add-note-btn"></span>
               </h4>
               <li ng-repeat="note in lesson.practiceArea.other track by $index">
-                <span ng-click="teacher.noteEdit()" ng-show="!teacher.edit">{{note}}</span>
-                <div ng-show="teacher.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave()" type="text"  class="form-control"  ng-model="lesson.practiceArea.other[$index]">
+                <span ng-click="teacher.noteEdit(note, 'other')" ng-show="!note.edit">{{note.text}}</span>
+                <div ng-show="note.edit" class="input-group">
+                  <input ng-blur="teacher.noteSave(note, 'other')" type="text" class="form-control notes" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'other')" type="button">&times;</button>
                   </span>
                 </div>
-
-                <!-- <input type="text" ng-blur="teacher.noteSave()" class="form-control" ng-show="teacher.edit" ng-model="lesson.practiceItems.other[$index]"> -->
               </li>
             </ul>
 
           </div>
 
-        </div>
-      </section>
+        </div> <!-- div panel section -->
+      </section> <!-- student notebook -->
     </div>
   </div>
     <!-- add messaging stuff here
