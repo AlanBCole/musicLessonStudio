@@ -9,6 +9,7 @@ module.exports = {
       if(err) {
         return res.send(err);
       }
+      req.session.uid = doc._id;
       res.send(doc);
     });
   },
@@ -21,7 +22,7 @@ module.exports = {
         console.log('MongoDB error:'.red, err);
           res.status(500).send("failed to find musician")
       }
-      else if (!musician) {musician
+      else if (!musician) {
               // forbidden
         console.log('No user found!');
         res.status(403).send("No user found");
@@ -39,11 +40,18 @@ module.exports = {
                 res.status(403).send("failed to log in");
               } else {
                 req.session.uid = musician._id; // this is what keeps our musician session on the back end!
-                res.send({ message: 'Login success' }); // send a success message
+                res.send( musician ); // send a success message
                   }
               });
           }
       });
+  },
+
+  loggedIn: (req, res)=>{
+
+    Musician.findOne({_id : req.session.uid}, function(err, musician){
+      res.send(musician);
+    })
   },
 
   get: (req, res)=>{

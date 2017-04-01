@@ -5,6 +5,9 @@ angular.module("notebook")
 
   function hCtrl (studio, $http) {
     var home = this;
+
+    home.musicians = [];
+
     home.getMusicians = function() {
       studio
       .getMusician()
@@ -15,18 +18,6 @@ angular.module("notebook")
     }
     home.getMusicians();
 
-
-    home.musicians = [];
-    // home.newMusician = {
-    //   firstName : '',
-    //   lastName  : '',
-    //   instrument: '',
-    //   email     : '',
-    //   phone     : '',
-    //   password  : '',
-    //   teacher   : false
-    // }
-
     home.payloads = {
       login: {},
       register: {}
@@ -36,19 +27,25 @@ angular.module("notebook")
         // happens when the user clicks submit on the login form
         submit: function ($event) { // click-event
 
-          if (home.payloads.login.password === document.querySelector("#password-confirm").value) {
+
 
             console.info('home.login.submit', $event);
 
             $http.post('/api/login', home.payloads.login)
                 .then(home.login.success, home.login.error);
             // do no forget your error callback!
-          }
+
         },
         success: function (res) { // server response callback
-            // when login is successful, redirect them into the dashboard
-            console.info('home.login.success', res.data);
-            location.href = '/student.html';
+            // when login is successful, redirect them into the teacher or student page
+            console.log(res.data);
+            if (res.data.teacher) {
+
+              location.href = "#!/teacher";
+            }
+            else {
+              location.href = "#!/student"
+            }
         },
         error: function (err) {
             console.error('Login.error', err);
@@ -61,7 +58,7 @@ angular.module("notebook")
     home.register = {
         submit: function () {
 
-          if (document.querySelector("#password").value === document.querySelector("#password-confirm").value) {
+          if (home.payloads.register.password === document.querySelector("#password-confirm").value) {
 
             studio
               .createMusician(home.payloads.register)
@@ -77,7 +74,13 @@ angular.module("notebook")
         success: function (res) {
             // when register is successful, just redirect them into the dashboard (already logged in)
             console.info('home.register.success', res.data);
-            location.href = "/dashboard.html";
+            if (res.data.teacher) {
+
+              location.href = "#!/teacher";
+            }
+            else {
+              location.href = "#!/student"
+            }
         },
         error: function (err) {
             console.error('home.register.error', err);

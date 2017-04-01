@@ -1,5 +1,24 @@
 
-  <div class="container-fluid dark-text">
+  <div class="container-fluid">
+
+    <nav class="nav navbar-default">
+      <div class="container">
+
+        <ul class="nav navbar-nav">
+          <li>
+            <h3>{{teacher.teacher.firstName}}'s {{teacher.teacher.instrument}} studio</h3>
+          </li>
+          <li>
+            <button
+              ng-click="teacher.logOut()"
+              type="button"
+              class="btn btn-warning">
+              logout</button>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
 
     <div class="row">
 
@@ -8,9 +27,10 @@
         <div class="list-group">
           <button
             ng-repeat="student in teacher.students"
+            ng-if="!student.teacher && student.instrument === teacher.teacher.instrument"
             ng-click="teacher.studentSelect(student)"
             type="button" class="list-group-item">
-            {{student.name}}
+            {{student.firstName}}
           </button>
         </div>
       </nav>
@@ -29,7 +49,7 @@
             <span class="glyphicon glyphicon-plus" ></span>
           </button>
           <p class="pull-right add-lesson">add a new lesson</p>
-          <h3>{{teacher.activeStudent.name}}'s notebook</h3>
+          <h3>{{teacher.activeStudent.firstName}}'s notebook</h3>
         </div>
 
 
@@ -147,7 +167,7 @@
                 </div>
 
             </div>
-          
+
 
         </div> <!-- lesson/panel -->
       </section> <!-- student notebook -->

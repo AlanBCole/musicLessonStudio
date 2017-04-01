@@ -22,6 +22,13 @@ function studioFact ($http) {
     })
   }
 
+// read — get a user from cookie info
+  function loggedIn() {
+    return $http({
+      method  : 'GET',
+      url     : 'api/me'
+    })
+  }
   // update
   function updateMusician(musician){
     return $http({
@@ -39,8 +46,9 @@ function studioFact ($http) {
 
 
   return {
+    loggedIn       : loggedIn,
     createMusician : createMusician,
     getMusician    : getMusician,
-    updateMusician: updateMusician
+    updateMusician : updateMusician
   }
 }

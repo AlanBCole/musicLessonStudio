@@ -8,12 +8,23 @@ function  tCtrl (studio) {
 
   window.teacher = teacher;
   teacher.students = [];
+  teacher.teacher = null;
+
+  teacher.getTeacher = function () {
+    studio
+      .loggedIn()
+        .then(function(response) {
+          console.log(response.data, 'getting teacher...');
+          teacher.teacher = response.data;
+        })
+  }
+  teacher.getTeacher();
 
   teacher.getStudents = function () {
     studio
       .getMusician()
         .then(function(response) {
-          console.log(response.data, 'teacher');
+          console.log(response.data, 'getting musicians...');
           teacher.students = response.data;
         })
   }
@@ -24,7 +35,7 @@ function  tCtrl (studio) {
   teacher.studentSelect = function (student) {
     teacher.activeStudent = student;
     teacher.studentSelected = true;
-    console.log(teacher.activeStudent.name + "'s notebook", student);
+    console.log(teacher.activeStudent.firstName + teacher.activeStudent.lastName +"'s notebook", student);
   }
 
   teacher.newLesson = function () {
