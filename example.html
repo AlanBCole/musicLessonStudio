@@ -1,0 +1,27 @@
+<div class="form" ng-repeat="contact in user.emergency">
+<input type="text" ng-model="emergency[0].name">
+
+<input type="text" ng-model="emergency[0].phone">
+
+<input type="text" ng-model="emergency[0].relation">
+</div>
+
+<div class="form" ng-repeat="contact in user.emergency">
+<input type="text" ng-model="emergency[1].name">
+
+<input type="text" ng-model="emergency[1].phone">
+
+<input type="text" ng-model="emergency[1].relation">
+</div>
+
+<div class="form" ng-repeat="contact in user.emergency">
+<input type="text" ng-model="user.name">
+
+<input type="text" ng-model="user.phone">
+
+<input type="text" ng-model="user.relation">
+</div>
+
+<!-- <input type="text" ng-model="user.info4"> -->
+<!-- <button type="button" ng-click="addEmContact()"></button> -->
+<button type="button" ng-click="save(user)">Save Info</button>

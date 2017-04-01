@@ -2,17 +2,14 @@ var mongoose = require("mongoose");
 
 var musicianSchema = mongoose.Schema({
 
-  name: String,
-  role: String,
+  firstName: String,
+  lastName: String,
+  teacher: {type: Boolean, default: false},
+  instrument: String,
+  picture: String,
   phone: String,
   email: String,
-  parents: [
-    {
-      name: String,
-      phone: String,
-      email: String
-    }
-  ],
+  password: String,
   startedAt: {type: Number, default : ()=> Date.now()},
   notebook: [
     {
@@ -25,7 +22,8 @@ var musicianSchema = mongoose.Schema({
         listen: Array,
         other: Array
       },
-      comments: Array
+      teacherComments: {type : Array, default : []},
+      studentComments: {type : Array, default : []}
     }
   ]
 });

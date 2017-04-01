@@ -13,9 +13,8 @@ function  tCtrl (studio) {
     studio
       .getMusician()
         .then(function(response) {
-          console.log(response.data);
+          console.log(response.data, 'teacher');
           teacher.students = response.data;
-
         })
   }
   teacher.getStudents();
@@ -40,7 +39,8 @@ function  tCtrl (studio) {
           listen: [],
           other: [],
         },
-        comments: []
+        teacherComments: [],
+        studentComments: []
       };
 
     teacher.activeStudent.notebook.unshift(lesson);
@@ -99,6 +99,12 @@ function  tCtrl (studio) {
     }
   }
 
+  teacher.addComment = function (lesson) {
+
+    lesson.teacherComments.push(document.getElementById("comment-input").value);
+    teacher.save("Teacher is commenting...");
+    document.getElementById("comment-input").value = '';
+  }
 
 
 }

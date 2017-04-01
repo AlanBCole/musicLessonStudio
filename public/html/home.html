@@ -1,2 +1,83 @@
-<div class="container guitar">
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>The Teachers:</h3>
+      <div class="thumbnail text-center" ng-repeat="musician in home.musicians" ng-if="musician.teacher">
+        <img ng-src="{{musician.picture}}">
+        <p>{{musician.firstName}} {{musician.lastName}}</p>
+        <p>{{musician.instrument}}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      
+      <h3>Login</h3>
+      <p>(or register below)</p>
+
+      <form ng-submit="home.login.submit($event)">
+
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input ng-model="home.payloads.login.email"
+            type="email" class="form-control" id="login-email" placeholder="low-e@string.com">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input ng-model="home.loginInfo.password"
+            type="password" class="form-control" id="login-password" placeholder="password">
+        </div>
+        <button type="submit" class="btn btn-default">Login</button>
+
+      </form>
+
+      <h3>Register Here</h3>
+
+      <form ng-submit="home.register.submit($event)">
+
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input ng-model="home.payloads.register.firstName"
+            type="text" class="form-control" id="first-name" placeholder="Jeff">
+        </div>
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input ng-model="home.payloads.register.lastName"
+            type="text" class="form-control" id="last-name" placeholder="Jefferson">
+        </div>
+        <div class="form-group">
+          <label for="instrument">Instrument</label>
+          <input ng-model="home.payloads.register.instrument"
+            type="text" class="form-control" id="instrument" placeholder="guitar">
+        </div>
+        <div class="form-group">
+          <label for="e-mail">Email</label>
+          <input ng-model="home.payloads.register.email"
+            type="email" class="form-control" id="e-mail" placeholder="6string@music.com">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input ng-model="home.payloads.register.phone"
+            type="tel" class="form-control" id="phone" placeholder="303-030-3030">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input ng-model="home.payloads.register.password"
+          type="password" class="form-control" id="password" placeholder="password">
+        </div>
+        <div class="form-group">
+          <label for="password-confirm">Confirm Password</label>
+          <input type="password" class="form-control" id="password-confirm" placeholder="confirm password">
+        </div>
+        <div class="checkbox">
+          <label>
+            <input ng-model="home.payloads.register.teacher"
+              type="checkbox"> Teacher
+          </label>
+        </div>
+        <button type="submit" class="btn btn-default" >Submit</button>
+
+      </form>
+
+    </div> <!-- form col -->
+  </div> <!-- row -->
+</div> <!-- container -->

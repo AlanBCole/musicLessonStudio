@@ -1,25 +1,3 @@
-<!-- <!DOCTYPE html>
-<html ng-app="notebook">
-  <head>
-    <meta charset="utf-8">
-    <title>Teacher's Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
-    <script src="/module.js" charset="utf-8"></script>
-    <script src="/controller.teacher.js" charset="utf-8"></script>
-    <script src="/factory.studio.js" charset="utf-8"></script>
-  </head>
-  <body ng-controller="teacherController as teacher">
-  <div class="jumbotron">
-    <div class="container">
-      <h1>My Classical Guitar Music Studio</h1>
-    </div>
-  </div>
-   -->
-
 
   <div class="container-fluid dark-text">
 
@@ -141,7 +119,7 @@
               <li ng-repeat="note in lesson.practiceArea.other track by $index">
                 <span ng-click="teacher.noteEdit(note, 'other')" ng-show="!note.edit">{{note.text}}</span>
                 <div ng-show="note.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave(note, 'other')" type="text" class="form-control notes" ng-model="note.text">
+                  <input ng-blur="teacher.noteSave(note, 'other')" type="text" class="form-control" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'other')" type="button">&times;</button>
                   </span>
@@ -151,16 +129,30 @@
 
           </div>
 
-        </div> <!-- div panel section -->
+
+            <div class="comment-area panel-footer">
+              Comments:
+              <p ng-repeat="comment in lesson.teacherComments" class="teacher-comment">{{comment}}</p>
+              <p ng-repeat="comment in lesson.studentComments" class="student-comment">{{comment}}</p>
+
+
+
+                <div class="input-group comment-box">
+                  <input id="comment-input" class="form-control" type="text" placeholder="add comment here...">
+                  <span class="input-group-btn">
+                    <button ng-click="teacher.addComment(lesson)" class="btn btn-default" type="button">
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </span>
+                </div>
+
+            </div>
+          
+
+        </div> <!-- lesson/panel -->
       </section> <!-- student notebook -->
-    </div>
-  </div>
-    <!-- add messaging stuff here
-    <section>
-
-    </section>
-
-
+    </div> <!-- row -->
+  </div> <!-- container fluid -->
 
   </body>
-</html> -->
+</html>

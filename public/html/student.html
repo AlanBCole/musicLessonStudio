@@ -1,25 +1,4 @@
-<!-- <!DOCTYPE html>
-<html ng-app="notebook">
-  <head>
-    <meta charset="utf-8">
-    <title>Student's Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
 
-    <script src="/module.js" charset="utf-8"></script>
-    <script src="/controller.student.js" charset="utf-8"></script>
-    <script src="/factory.studio.js" charset="utf-8"></script>
-  </head>
-
-  <body ng-controller="studentController as student">
-    <div class="jumbotron">
-      <div class="container">
-        <h2>Alan's Classical Guitar Music Studio</h2>
-      </div>
-    </div> -->
 
     <div class="container-fluid dark-text">
 
@@ -43,16 +22,12 @@
             <h3>{{student.activeStudent.name}}'s notebook</h3>
           </div>
 
-          <!-- <div class="row">
-            <div class="col-sm-6 col-sm-offset-3 btn btn-warning btn-large" ng-click="teacher.newLesson()">
-              add a new lesson for {{teacher.activeStudent.name}}
-            </div>
-          </div> -->
+
 
           <div class="panel panel-default" ng-repeat="lesson in student.activeStudent.notebook">
 
             <div class="panel-heading">
-              <h1>{{lesson.date}}  <small>{{lesson.lessonTheme}}</small></h1>
+              <h1>{{lesson.date | date}}  <small>{{lesson.lessonTheme}}</small></h1>
             </div>
             <!-- list individual practice items -->
             <div class="panel-body">
@@ -75,6 +50,23 @@
 
             </div>
 
+            <div class="comment-area panel-footer">
+              Comments:
+              <p ng-repeat="comment in lesson.teacherComments" class="teacher-comment">
+                {{comment}}
+              </p>
+              <p ng-repeat="comment in lesson.studentComments" class="student-comment">{{comment}}</p>
+
+              <div class="input-group comment-box">
+                <input id="comment-input" class="form-control" type="text" placeholder="add comment here...">
+                <span class="input-group-btn">
+                  <button ng-click="student.addComment(lesson)" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </span>
+              </div>
+
+            </div>
           </div>
         </section>
       </div>

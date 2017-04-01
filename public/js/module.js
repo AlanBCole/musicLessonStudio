@@ -7,6 +7,8 @@ function Router ($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl : '/html/home.html',
+      controller : 'homeController',
+      controllerAs : 'home'
     })
     .when('/teacher', {
       templateUrl : '/html/teacher.html',

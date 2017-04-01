@@ -11,6 +11,7 @@ module.exports = (app) => {
   app.get('/api/musician', StudioCtrl.get);
   app.get('/api/studio/:id', StudioCtrl.get);
   app.post('/api/musician', StudioCtrl.create);
+  app.post('/api/login', StudioCtrl.login);
   app.put('/api/musician/:id', StudioCtrl.update);
   // app.put('/api/remove/:id', )
 
