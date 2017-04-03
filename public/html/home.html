@@ -1,14 +1,35 @@
 <div class="jumbotron">
   <div class="container">
-    <h2>Welcome to Our Music Lesson Studio</h2>
-    <p>sign in to view your lesson notebook</p>
+    <h1>Music Lesson Studio</h1>
+    <h3>sign in to view your lesson notebook</h3>
+    <p>(or register below)</p>
+
+    <form class="form-inline" ng-submit="home.login.submit($event)">
+
+      <div class="form-group">
+        <label class="sr-only" for="login-email">Email</label>
+        <input ng-model="home.payloads.login.email"
+          type="email" class="form-control" id="login-email" placeholder="low-e@string.com">
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="login-password">Password</label>
+        <input ng-model="home.payloads.login.password"
+          type="password" class="form-control" id="login-password" placeholder="password">
+      </div>
+
+      <button type="submit" class="btn btn-success">Login</button>
+
+    </form>
+
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <h3>The Teachers:</h3>
+
+    <div class="col-md-6 teachers-thumbnails">
+      <h3>Teachers:</h3>
       <div class="thumbnail text-center" ng-repeat="musician in home.musicians" ng-if="musician.teacher">
         <img ng-src="{{musician.picture}}">
         <p>{{musician.firstName}} {{musician.lastName}}</p>
@@ -17,25 +38,6 @@
     </div>
 
     <div class="col-md-6">
-
-      <h3>Login</h3>
-      <p>(or register below)</p>
-
-      <form ng-submit="home.login.submit($event)">
-
-        <div class="form-group">
-          <label for="login-email">Email</label>
-          <input ng-model="home.payloads.login.email"
-            type="email" class="form-control" id="login-email" placeholder="low-e@string.com">
-        </div>
-        <div class="form-group">
-          <label for="login-password">Password</label>
-          <input ng-model="home.payloads.login.password"
-            type="password" class="form-control" id="login-password" placeholder="password">
-        </div>
-        <button type="submit" class="btn btn-success">Login</button>
-
-      </form>
 
       <h3>Register Here</h3>
 

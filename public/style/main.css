@@ -12,6 +12,10 @@ li {
   color: #777777;
 }
 
+.teachers-thumbnails {
+  margin-bottom: 5rem;
+}
+
 .guitar {
   background-image: url("/style/early-guitar-body.jpg");
   background-size: cover;
