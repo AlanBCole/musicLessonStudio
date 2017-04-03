@@ -44,11 +44,25 @@ function studioFact ($http) {
     //   url    : 'api/remove/' + musician._id
     // }
 
+  function makeCalendar () {
+    // console.log('Making a calendar!');
+    // console.log($('#calendar'));
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+        defaultView: 'listYear',
+        header: false,
+        googleCalendarApiKey: 'AIzaSyC-f2G7dU42AbawTx4A6Nbx69VNJiBdmuo',
+        events: {
+          googleCalendarId: 'tvg5ukkqvnqahpo181f7841jp8@group.calendar.google.com'
+        }
+    })
+  }
 
   return {
     loggedIn       : loggedIn,
     createMusician : createMusician,
     getMusician    : getMusician,
-    updateMusician : updateMusician
+    updateMusician : updateMusician,
+    makeCalendar   : makeCalendar
   }
 }

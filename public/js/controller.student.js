@@ -6,21 +6,40 @@ sCtrl.$inject = ["studio"];
 function sCtrl(studio) {
   var student = this;
 
-  student.getInfo = function () {
-    studio
-      .getMusician()
-        .then(function(response) {
-          console.log(response.data, "student");
-          student.students = response.data;
+  // student.getInfo = function () {
+  //   studio
+  //     .getMusician()
+  //       .then(function(response) {
+  //         console.log(response.data, "student");
+  //         student.students = response.data;
+  //       })
+  // }
 
+  student.makeCalendar = function(){
+    console.log('Making a calendar!');
+    console.log($('#calendar'));
+      studio
+        .makeCalendar();
+  }
+
+  student.activeStudent = '';
+
+  student.getStudent = function () {
+    studio
+      .loggedIn()
+        .then(function(response) {
+          console.log(response.data, 'getting student...');
+          student.activeStudent = response.data;
         })
   }
-  student.getInfo();
-  // student.students = studio.studentList;
+  student.getStudent();
 
-  student.showNotebook = function (pupil) {
-    student.activeStudent = pupil;
-  }
+  // student.getInfo();
+  // // student.students = studio.studentList;
+
+  // student.showNotebook = function (pupil) {
+  //   student.activeStudent = pupil;
+  // }
 
   student.save = function (str, area) {
     studio

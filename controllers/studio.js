@@ -72,7 +72,7 @@ module.exports = {
           return res.send(err);
         }
         res.send(musicians);
-        console.log('GET - /api/ballots - READ-all'.cyan, req.params);
+        console.log('GET - /api/musician - READ-all'.cyan, req.params);
       })
     }
   },

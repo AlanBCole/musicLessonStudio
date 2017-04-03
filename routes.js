@@ -9,7 +9,7 @@ module.exports = (app) => {
 
   app.get('/api/musician', StudioCtrl.get);
   app.get('/api/musician/:id', StudioCtrl.get);
-  app.get('/api/me', StudioCtrl.loggedIn)
+  app.get('/api/me', StudioCtrl.loggedIn);
   app.post('/api/musician', StudioCtrl.create);
   app.post('/api/login', StudioCtrl.login);
   app.put('/api/musician/:id', StudioCtrl.update);

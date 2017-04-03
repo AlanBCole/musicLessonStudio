@@ -8,6 +8,10 @@ li {
   margin-left: 1rem;
 }
 
+.dark-text {
+  color: #777777;
+}
+
 .guitar {
   background-image: url("/style/early-guitar-body.jpg");
   background-size: cover;
@@ -21,6 +25,15 @@ li {
   width: 80%;
 }
 
+.logout {
+  position: relative;
+  top: .5rem;
+}
+
+.student-list {
+  margin-top: 1rem;
+}
+
 .empty {
   background-color: #F5F5F5;
   border: 2px dashed #D8D8D8;
@@ -29,6 +42,11 @@ li {
   padding: 200px 0;
   color: #777777;
   text-align: center;
+  margin-top: 1rem;
+}
+
+#calendar {
+  margin-top: 1rem;
 }
 
 .add-lesson {
@@ -53,9 +71,6 @@ li {
   font-size: 1.5rem;
 }
 
-.dark-text {
-  color: #777777;
-}
 
 .comment-area {
   position: relative;
@@ -82,4 +97,5 @@ li {
   font-family: 'Homemade Apple', cursive;
   color: blue;
   text-align: left;
+  /*font-size: 1.5rem;*/
 }

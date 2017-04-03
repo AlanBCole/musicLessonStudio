@@ -10,6 +10,13 @@ function  tCtrl (studio) {
   teacher.students = [];
   teacher.teacher = null;
 
+  teacher.makeCalendar = function(){
+    console.log('Making a calendar!');
+    console.log($('#calendar'));
+      studio
+        .makeCalendar();
+  }
+
   teacher.getTeacher = function () {
     studio
       .loggedIn()
