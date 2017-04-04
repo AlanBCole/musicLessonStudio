@@ -57,15 +57,13 @@ angular.module("notebook")
 
     home.register = {
         submit: function () {
-
+          home.payloads.register.instrument = home.payloads.register.instrument.toLowerCase();
           if (home.payloads.register.password === document.querySelector("#password-confirm").value) {
 
             studio
               .createMusician(home.payloads.register)
-                .then(function(response) {
-                  console.log(response.data, "Saving new musician...");
-                }, home.register.success, home.login.error);
-                home.payloads.register = {};
+                .then(home.register.success, home.login.error);
+                // home.payloads.register = {};
           }
           else {
             alert("Make sure your Password and Confirmation Password match!")
@@ -75,10 +73,11 @@ angular.module("notebook")
             // when register is successful, just redirect them into the dashboard (already logged in)
             console.info('home.register.success', res.data);
             if (res.data.teacher) {
-
+              console.log(res.data.firstName + "is a teacher");
               location.href = "#!/teacher";
             }
             else {
+              console.log(res.data.firstName + "is a student")
               location.href = "#!/student"
             }
         },
@@ -89,19 +88,19 @@ angular.module("notebook")
         }
     };
 
-    home.registerMusician = function () {
-      if (document.querySelector("#password").value === document.querySelector("#password-confirm").value) {
-        studio
-          .createMusician(home.payloads.register)
-            .then(function(response) {
-              console.log(response.data, "Saving new musician...");
-            })
-            home.payloads.register = {};
-      }
-      else {
-        alert("Make sure your Password and Confirmation Password match!")
-      }
-    }
+    // home.registerMusician = function () {
+    //   if (document.querySelector("#password").value === document.querySelector("#password-confirm").value) {
+    //     studio
+    //       .createMusician(home.payloads.register)
+    //         .then(function(response) {
+    //           console.log(response.data, "Saving new musician...");
+    //         })
+    //         home.payloads.register = {};
+    //   }
+    //   else {
+    //     alert("Make sure your Password and Confirmation Password match!")
+    //   }
+    // }
 
 
 

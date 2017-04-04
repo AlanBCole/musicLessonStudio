@@ -5,7 +5,7 @@
       <div class="jumbotron">
 
         <h3 class="heading-inline">{{student.activeStudent.firstName}}'s {{student.activeStudent.instrument}} lesson notebook</h3>
-
+        <button class="pull-right btn btn-danger" type="button" ng-click="student.studentEdit()">Update your Info</button>
       </div>
 
 
@@ -82,9 +82,60 @@
         </section> <!-- notebook -->
       </div> <!-- row -->
     </div> <!-- container-fluid -->
-    <!-- <section>
 
-    </section>
 
-  </body>
-</html> -->
+  <!-- studentUpdate modal -->
+  <!-- student updateInfo modal -->
+  <div class="modal fade" id="studentUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Update Information : {{student.activeStudent.firstName}} {{student.activeStudent.lastName}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <form ng-submit="student.save()">
+
+                  <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input ng-model="student.activeStudent.firstName"
+                      type="text" class="form-control" id="first-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input ng-model="student.activeStudent.lastName"
+                      type="text" class="form-control" id="last-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="instrument">Instrument</label>
+                    <input ng-model="student.activeStudent.instrument"
+                      type="text" class="form-control" id="instrument">
+                  </div>
+                  <div class="form-group">
+                    <label for="e-mail">Email</label>
+                    <input ng-model="student.activeStudent.email"
+                      type="email" class="form-control" id="e-mail">
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input ng-model="student.activeStudent.phone"
+                      type="tel" class="form-control" id="phone">
+                  </div>
+                  <div class="form-group">
+                    <label for="catchphrase">Catch Phrase</label>
+                    <input ng-model="student.activeStudent.catchPhrase"
+                    type="text" class="form-control" id="password">
+                  </div>
+                  <div class="form-group">
+                    <label for="picture-url">Picture url</label>
+                    <input ng-model="student.activeStudent.picture" type="text" id="picture-url">
+                  </div>
+                  <button type="submit" class="btn btn-warning">Update</button>
+
+                </form>
+              </div> <!-- modal body -->
+
+          </div> <!-- modal content -->
+      </div> <!-- modal dialog -->
+  </div> <!-- modal -->

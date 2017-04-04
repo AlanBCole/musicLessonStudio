@@ -17,18 +17,18 @@ function sCtrl(studio) {
 
   student.makeCalendar = function(){
     console.log('Making a calendar!');
-    console.log($('#calendar'));
+    // console.log($('#calendar'));
       studio
         .makeCalendar();
   }
 
-  student.activeStudent = '';
+  student.activeStudent = {};
 
   student.getStudent = function () {
     studio
       .loggedIn()
         .then(function(response) {
-          console.log(response.data, 'getting student...');
+          console.log('getting student...', response.data);
           student.activeStudent = response.data;
         })
   }
@@ -54,6 +54,12 @@ function sCtrl(studio) {
     lesson.studentComments.push(document.getElementById("comment-input").value);
     student.save("Student or Parent is commenting...");
     document.getElementById("comment-input").value = '';
+  }
+
+  student.studentEdit = function(){
+    console.log("updating " + student.activeStudent.firstName + "'s information")
+
+    $('#studentUpdate').modal('show');
   }
 
 }

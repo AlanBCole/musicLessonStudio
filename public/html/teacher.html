@@ -20,7 +20,7 @@
 
     <div class="row">
 
-      <nav class="col-md-2 col-xs-4 student-list">
+      <nav class="col-md-2 col-xs-3 student-list">
         <!-- list of students. click on one and show that student's notebook -->
         <div class="list-group">
           <button
@@ -33,24 +33,24 @@
         </div>
       </nav>
 
-      <section ng-init="teacher.makeCalendar()" id="calendar" class="col-md-5 col-xs-8 pull-right">
+      <section ng-init="teacher.makeCalendar()" id="calendar" class="col-md-5 col-xs-9 pull-right">
       </section>
 
       <!-- notebook section  -->
         <!-- shows when no student is selected  -->
-      <section class="col-md-5 col-xs-12 empty" ng-show="!teacher.studentSelected">
+      <section class="col-md-5 col-xs-9 empty" ng-show="!teacher.studentSelected">
         <h3>click on a student's name to see his or her notebook</h3>
       </section>
 
         <!-- selected student's notebook -->
-      <section class="col-md-5 col-xs-12" ng-show="teacher.studentSelected">
+      <section class="col-md-5 col-xs-9" ng-show="teacher.studentSelected">
 
         <div class="page-header">
           <button ng-click="teacher.newLesson()" class="pull-right btn btn-default add-lesson-btn">
             <span class="glyphicon glyphicon-plus" ></span>
           </button>
           <p class="pull-right add-lesson">add a new lesson</p>
-          <h3>{{teacher.activeStudent.firstName}}'s notebook</h3>
+          <h3>{{teacher.activeStudent.firstName}} {{teacher.activeStudent.lastName}}'s notebook</h3>
         </div>
 
 
