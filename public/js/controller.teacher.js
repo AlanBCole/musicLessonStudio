@@ -124,5 +124,21 @@ function  tCtrl (studio) {
     document.getElementById("comment-input").value = '';
   }
 
+  teacher.teacherEdit = function(){
+    console.log("updating " + teacher.teacher.firstName + "'s information")
+
+    $('#teacherUpdate').modal('show');
+  }
+
+  teacher.teacherUpdate = function () {
+      studio
+      .updateMusician(teacher.teacher)
+      .then(function(response){
+        console.log(teacher.teacher, response);
+      });
+      $('#teacherUpdate').modal('hide');
+    }
+
+
 
 }

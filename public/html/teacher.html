@@ -1,49 +1,48 @@
 
-  <div class="container-fluid">
+<div class="jumbotron">
+  <div class="container relative">
 
-    <!-- <nav class="nav navbar-default"> -->
-      <!-- <div class="container"> -->
 
-        <div class="jumbotron">
+      <h2>{{teacher.teacher.firstName}}'s {{teacher.teacher.instrument}} studio</h2>
+      <img ng-src="{{teacher.teacher.picture}}" class="header-pic">
+      <button class="update-btn btn btn-danger" type="button" ng-click="teacher.teacherEdit()">Update your Info</button>
+  </div>
+</div>
 
-          <h3 class="heading-inline">{{teacher.teacher.firstName}}'s {{teacher.teacher.instrument}} studio</h3>
-          <!-- <button
-            ng-click="teacher.logOut()"
-            type="button"
-            class="btn btn-warning logout pull-right">
-            logout
-          </button> -->
+<div class="container-fluid">
 
-        </div>
-      <!-- </div> -->
-    <!-- </nav> -->
+    <div class="row student-list">
 
-    <div class="row">
-
-      <nav class="col-md-2 col-xs-3 student-list">
+      <div class="col-xs-1">
+        <!-- blank space -->
+      </div>
+      <!-- <nav class="col-md-2 col-md-offset-0 col-xs-3"> -->
         <!-- list of students. click on one and show that student's notebook -->
-        <div class="list-group">
+        <!-- <div class="list-group"> -->
           <button
             ng-repeat="student in teacher.students"
             ng-if="!student.teacher && student.instrument === teacher.teacher.instrument"
             ng-click="teacher.studentSelect(student)"
-            type="button" class="list-group-item">
+            type="button" class="btn btn-default col-md-2 col-xs-3">
             {{student.firstName}}
           </button>
-        </div>
-      </nav>
+        <!-- </div> -->
+      <!-- </nav> -->
+    </div>
 
-      <section ng-init="teacher.makeCalendar()" id="calendar" class="col-md-5 col-xs-9 pull-right">
+    <div class="row">
+
+      <section ng-init="teacher.makeCalendar()" id="calendar" class="col-md-6 col-xs-12 col-lg-5 col-lg-offset-1">
       </section>
 
       <!-- notebook section  -->
         <!-- shows when no student is selected  -->
-      <section class="col-md-5 col-xs-9 empty" ng-show="!teacher.studentSelected">
+      <section class="col-md-6 col-xs-12 col-lg-5" ng-show="!teacher.studentSelected">
         <h3>click on a student's name to see his or her notebook</h3>
       </section>
 
         <!-- selected student's notebook -->
-      <section class="col-md-5 col-xs-9" ng-show="teacher.studentSelected">
+      <section class="col-md-6 col-xs-12 col-lg-5" ng-show="teacher.studentSelected">
 
         <div class="page-header">
           <button ng-click="teacher.newLesson()" class="pull-right btn btn-default add-lesson-btn">
@@ -174,5 +173,56 @@
     </div> <!-- row -->
   </div> <!-- container fluid -->
 
-  </body>
-</html>
+  <div class="modal fade" id="teacherUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Update Information : {{student.activeStudent.firstName}} {{student.activeStudent.lastName}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <form ng-submit="teacher.teacherUpdate()">
+
+                  <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input ng-model="teacher.teacher.firstName"
+                      type="text" class="form-control" id="first-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input ng-model="teacher.teacher.lastName"
+                      type="text" class="form-control" id="last-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="instrument">Instrument</label>
+                    <input ng-model="teacher.teacher.instrument"
+                      type="text" class="form-control" id="instrument">
+                  </div>
+                  <div class="form-group">
+                    <label for="e-mail">Email</label>
+                    <input ng-model="teacher.teacher.email"
+                      type="email" class="form-control" id="e-mail">
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input ng-model="teacher.teacher.phone"
+                      type="tel" class="form-control" id="phone">
+                  </div>
+                  <div class="form-group">
+                    <label for="catchphrase">Catch Phrase</label>
+                    <input ng-model="teacher.teacher.catchPhrase"
+                    type="text" class="form-control" id="password">
+                  </div>
+                  <div class="form-group">
+                    <label for="picture-url">Picture url</label>
+                    <input ng-model="teacher.teacher.picture" class="form-control "type="text" id="picture-url">
+                  </div>
+                  <button type="submit" class="btn btn-warning">Update</button>
+
+                </form>
+              </div> <!-- modal body -->
+
+          </div> <!-- modal content -->
+      </div> <!-- modal dialog -->
+  </div> <!-- modal -->

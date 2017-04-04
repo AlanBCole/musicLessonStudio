@@ -42,8 +42,28 @@ li {
   top: .5rem;
 }*/
 
+
+/*jumbotron area*/
+.relative {
+  position: relative;
+}
+
+.update-btn {
+  position: absolute;
+  right: 1rem;
+  bottom: 0;
+}
+
+.header-pic {
+  width: 100px;
+  height: 100px;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
+
 .student-list {
   margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .empty {
@@ -58,6 +78,10 @@ li {
 }
 
 #calendar {
+  margin-top: 1rem;
+}
+
+.notebook {
   margin-top: 1rem;
 }
 

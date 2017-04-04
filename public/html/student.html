@@ -1,13 +1,16 @@
 
 
-    <div class="container-fluid dark-text">
+  <div class="jumbotron">
+    <div class="container relative">
 
-      <div class="jumbotron">
 
-        <h3 class="heading-inline">{{student.activeStudent.firstName}}'s {{student.activeStudent.instrument}} lesson notebook</h3>
-        <button class="pull-right btn btn-danger" type="button" ng-click="student.studentEdit()">Update your Info</button>
-      </div>
+        <h2 class="heading-inline">{{student.activeStudent.firstName}}'s {{student.activeStudent.instrument}} lesson notebook</h2><br>
+        <img ng-src="{{student.activeStudent.picture}}" class="header-pic">
+        <button class="update-btn btn btn-danger" type="button" ng-click="student.studentEdit()">Update your Info</button>
+    </div>
+  </div>
 
+  <div class="container-fluid">
 
       <div class="row">
 
@@ -25,11 +28,11 @@
         </section> -->
 
 <!-- calendar -->
-        <section ng-init="student.makeCalendar()" id="calendar" class="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0 col-lg-5 col-lg-offset-1">
+        <section ng-init="student.makeCalendar()" id="calendar" class="col-md-6 col-xs-12 col-lg-5 col-lg-offset-1">
         </section>
 
 <!-- student notebook -->
-        <section class="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0 col-lg-5">
+        <section class="col-md-6 col-xs-12 col-lg-5 notebook">
           <!-- <div class="page-header">
             <h3>{{student.activeStudent.name}}'s notebook</h3>
           </div> -->
@@ -44,19 +47,19 @@
             <div class="panel-body">
 
               <ul><h4>Tonalization:</h4>
-                <li ng-repeat="item in lesson.practiceItems.tonalization">{{item}}</li>
+                <li ng-repeat="item in lesson.practiceArea.tonalization">{{item.text}}</li>
               </ul>
               <ul><h4>Working Piece:</h4>
-                <li ng-repeat="item in lesson.practiceItems.workingPiece">{{item}}</li>
+                <li ng-repeat="item in lesson.practiceAre.workingPiece">{{item.text}}</li>
               </ul>
               <ul><h4>Review:</h4>
-                <li ng-repeat="item in lesson.practiceItems.review">{{item}}</li>
+                <li ng-repeat="item in lesson.practiceArea.review">{{item.text}}</li>
               </ul>
               <ul><h4>Listen:</h4>
-                <li ng-repeat="item in lesson.practiceItems.listen">{{item}}</li>
+                <li ng-repeat="item in lesson.practiceArea.listen">{{item.text}}</li>
               </ul>
               <ul><h4>Other:</h4>
-                <li ng-repeat="item in lesson.practiceItems.other">{{item}}</li>
+                <li ng-repeat="item in lesson.practiceArea.other">{{item.text}}</li>
               </ul>
 
             </div>
@@ -95,7 +98,7 @@
               </div>
               <div class="modal-body">
 
-                <form ng-submit="student.save()">
+                <form ng-submit="student.studentUpdate()">
 
                   <div class="form-group">
                     <label for="first-name">First Name</label>
@@ -129,7 +132,7 @@
                   </div>
                   <div class="form-group">
                     <label for="picture-url">Picture url</label>
-                    <input ng-model="student.activeStudent.picture" type="text" id="picture-url">
+                    <input ng-model="student.activeStudent.picture" class="form-control "type="text" id="picture-url">
                   </div>
                   <button type="submit" class="btn btn-warning">Update</button>
 

@@ -62,4 +62,9 @@ function sCtrl(studio) {
     $('#studentUpdate').modal('show');
   }
 
+  student.studentUpdate = function () {
+    student.save();
+    $('#studentUpdate').modal('hide');
+  }
+
 }
