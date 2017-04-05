@@ -7,6 +7,7 @@ var musicianSchema = mongoose.Schema({
   lastName: String,
   teacher: {type: Boolean, default: false},
   instrument: String,
+  catchPhrase: String,
   picture: String,
   phone: String,
   email: String,
@@ -24,7 +25,8 @@ var musicianSchema = mongoose.Schema({
         other: Array
       },
       teacherComments: {type : Array, default : []},
-      studentComments: {type : Array, default : []}
+      studentComments: {type : Array, default : []},
+      studioAnnouncements: {type: Array, default : []}
     }
   ]
 });

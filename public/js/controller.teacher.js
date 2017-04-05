@@ -84,7 +84,7 @@ function  tCtrl (studio) {
   }
 
   teacher.deleteLesson = function(lesson){
-    var answer = confirm("Are you sure you want to remove this lesson from " + teacher.activeStudent.name + "'s notebook?");
+    var answer = confirm("Are you sure you want to remove this lesson from " + teacher.activeStudent.firstName + "'s notebook?");
 
     if (answer) {
       teacher.activeStudent.notebook.splice(teacher.activeStudent.notebook.indexOf(lesson), 1);
@@ -103,13 +103,17 @@ function  tCtrl (studio) {
     console.log("Editing a " + area + " note...\n" + note.text);
   }
 
-  teacher.noteSave = function (note, area) {
-    note.edit = false;
-    teacher.save("Saving a note to", area);
+  teacher.noteSave = function (note, area, event) {
+    // console.log(event.which);
+    if (event.which === 13) {
+      console.log("Used 'enter' key, #" + event.which + " ...");
+      teacher.save("Saving a note to", area);
+      note.edit = false;
+    }
   }
 
   teacher.deleteNote = function(lesson, note, area){
-    var answer = confirm("Are you sure you want to remove this lesson from " + teacher.activeStudent.name + "'s notebook?");
+    var answer = confirm("Are you sure you want to remove this lesson from " + teacher.activeStudent.firstName + "'s notebook?");
 
     if (answer) {
       lesson.practiceArea[area].splice(lesson.practiceArea[area].indexOf(note), 1);
@@ -117,6 +121,7 @@ function  tCtrl (studio) {
     }
   }
 
+// a plain DOM manipulation
   teacher.addComment = function (lesson) {
 
     lesson.teacherComments.push(document.getElementById("comment-input").value);
@@ -139,6 +144,17 @@ function  tCtrl (studio) {
       $('#teacherUpdate').modal('hide');
     }
 
-
+// similar comment box to addComment just using angular/ng-model instead
+  // teacher.announcement = '';
+  // teacher.announce = function (lesson) {
+  //   console.log(teacher.announcement);
+  //   for (var i = 0; i < teacher.students.length; i++) {
+  //     if (teacher.student[i].instrument === teacher.teacher.instrument) {
+  //       lesson.studioAnnouncements.unshift(teacher.announcement);
+  //       console.log("adding announcement in " + student.firstName + "'s " + lesson.date) + "notebook";
+  //     }
+  //   }
+  //   teacher.announcement = '';
+  // }
 
 }

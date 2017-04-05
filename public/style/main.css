@@ -62,7 +62,7 @@ li {
 }
 
 .student-list {
-  margin-top: 1rem;
+  /*margin-top: 1rem;*/
   margin-bottom: 2rem;
 }
 
@@ -85,18 +85,21 @@ li {
   margin-top: 1rem;
 }
 
-.add-lesson {
-  color: #777777;
-  position: relative;
-  top: 5px;
-  padding-right: 1rem;
+.notebook-heading {
+  margin-top: 1rem;
+  border-top: 1px solid #EEEEEE;
 }
 
-.heading-inline {
+.add-lesson {
+  text-align: right;
+}
+
+.inline-text {
   display: inline;
 }
 
 .add-lesson-btn {
+  margin-left: .5rem;
   color: #C4C4C4;
 }
 
@@ -106,7 +109,6 @@ li {
   top: 1px;
   font-size: 1.5rem;
 }
-
 
 .comment-area {
   position: relative;
@@ -123,7 +125,7 @@ li {
 
 .teacher-comment {
   font-family: 'Caveat', cursive;
-  color: red;
+  color: rgb(0, 0, 128);
   text-align: right;
   font-size: 2rem;
   margin: 0px;
@@ -134,4 +136,12 @@ li {
   color: blue;
   text-align: left;
   /*font-size: 1.5rem;*/
+}
+
+.announcements {
+  font-family: 'Caveat', cursive;
+  color: red;
+  text-align: center;
+  font-size: 2rem;
+  margin: 0px;
 }
