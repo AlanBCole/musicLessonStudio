@@ -24,8 +24,7 @@ var musicianSchema = mongoose.Schema({
         listen: Array,
         other: Array
       },
-      teacherComments: {type : Array, default : []},
-      studentComments: {type : Array, default : []},
+      comments: {type : Array, default : []},
       studioAnnouncements: {type: Array, default : []}
     }
   ]

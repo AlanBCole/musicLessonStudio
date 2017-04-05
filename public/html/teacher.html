@@ -36,6 +36,14 @@
         <div class="page-header notebook-heading">
             <h3>Studio Calendar</h3>
 
+            <div class="input-group comment-box">
+              <input ng-model="teacher.announcement" class="form-control" type="text" placeholder="add a studio announcement here...">
+              <span class="input-group-btn">
+                <button ng-click="teacher.announce(lesson)" class="btn btn-default" type="button">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+            </div>
         <div ng-init="teacher.makeCalendar()" id="calendar" >
         </div>
       </section>
@@ -159,25 +167,20 @@
 
 
           <div class="comment-area panel-footer">
-            <!-- Studio Announcements:
-            <p ng-repeat="announcement in lesson.studioAnnouncements" class="announcement">{{announcement}}</p>
-
-            <div class="input-group comment-box">
-              <input ng-model="teacher.announcement" class="form-control" type="text" placeholder="add a studio announcement here...">
-              <span class="input-group-btn">
-                <button ng-click="teacher.announce(lesson)" class="btn btn-default" type="button">
-                  <span class="glyphicon glyphicon-plus"></span>
-                </button>
-              </span>
-            </div>
-          </div> -->
+            Studio Announcements:
+            <p ng-repeat="announcement in lesson.studioAnnouncements" class="announcements">{{announcement}}</p>
 
           </div>
 
+
           <div class="comment-area panel-footer">
             Comments:
-            <p ng-repeat="comment in lesson.teacherComments" class="teacher-comment">{{comment}}</p>
-            <p ng-repeat="comment in lesson.studentComments" class="student-comment">{{comment}}</p>
+            <p ng-repeat="comment in lesson.comments"
+            ng-class="{'teacher-comment' : comment.type === 't',
+            'student-comment' : comment.type === 's'}">
+              {{comment.text}}
+            </p>
+
 
             <div class="input-group comment-box">
               <input id="comment-input" class="form-control" type="text" placeholder="add comment here...">
@@ -187,6 +190,8 @@
                 </button>
               </span>
             </div>
+
+          </div>
 
           </div> <!-- panel footer/comment -->
 

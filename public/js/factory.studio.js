@@ -50,11 +50,7 @@ function studioFact ($http) {
     $('#calendar').fullCalendar({
         // put your options and callbacks here
         defaultView: 'listYear',
-        header: {
-          left:'',
-          center: 'today',
-          right: ''
-        },
+        header: false,
         googleCalendarApiKey: 'AIzaSyC-f2G7dU42AbawTx4A6Nbx69VNJiBdmuo',
         events: {
           googleCalendarId: 'tvg5ukkqvnqahpo181f7841jp8@group.calendar.google.com'

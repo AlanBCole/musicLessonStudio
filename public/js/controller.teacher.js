@@ -12,7 +12,7 @@ function  tCtrl (studio) {
 
   teacher.makeCalendar = function(){
     console.log('Making a calendar!');
-    console.log($('#calendar'));
+    // console.log($('#calendar'));
       studio
         .makeCalendar();
   }
@@ -21,7 +21,7 @@ function  tCtrl (studio) {
     studio
       .loggedIn()
         .then(function(response) {
-          console.log(response.data, 'getting teacher...');
+          console.log('getting teacher...', response.data);
           teacher.teacher = response.data;
         })
   }
@@ -31,7 +31,7 @@ function  tCtrl (studio) {
     studio
       .getMusician()
         .then(function(response) {
-          console.log(response.data, 'getting musicians...');
+          console.log('getting' + teacher.teacher.instrument + ' students...', response.data);
           teacher.students = response.data;
         })
   }
@@ -123,8 +123,8 @@ function  tCtrl (studio) {
 
 // a plain DOM manipulation
   teacher.addComment = function (lesson) {
-
-    lesson.teacherComments.push(document.getElementById("comment-input").value);
+    var comment = {text: document.getElementById("comment-input").value, type: 't'}
+    lesson.comments.push(comment);
     teacher.save("Teacher is commenting...");
     document.getElementById("comment-input").value = '';
   }
@@ -144,17 +144,26 @@ function  tCtrl (studio) {
       $('#teacherUpdate').modal('hide');
     }
 
-// similar comment box to addComment just using angular/ng-model instead
-  // teacher.announcement = '';
-  // teacher.announce = function (lesson) {
-  //   console.log(teacher.announcement);
-  //   for (var i = 0; i < teacher.students.length; i++) {
-  //     if (teacher.student[i].instrument === teacher.teacher.instrument) {
-  //       lesson.studioAnnouncements.unshift(teacher.announcement);
-  //       console.log("adding announcement in " + student.firstName + "'s " + lesson.date) + "notebook";
-  //     }
-  //   }
-  //   teacher.announcement = '';
-  // }
+// similar to addComment just using angular/ng-model instead
+  teacher.announcement = '';
+  teacher.announce = function () {
+
+    console.log(teacher.announcement);
+    for (var i = 0; i < teacher.students.length; i++) {
+
+      if (teacher.students[i].instrument === teacher.teacher.instrument) {
+        // console.log(teacher.students[i]);
+        teacher.students[i].notebook[0] = teacher.students[i].notebook[0] || {studioAnnouncements : []};
+        teacher.students[i].notebook[0].studioAnnouncements.unshift(teacher.announcement);
+        console.log("adding announcement in " + teacher.students[i].firstName + "'s " + teacher.students[i].notebook[0].date) + "notebook";
+        studio
+        .updateMusician(teacher.students[i])
+        .then(function(response){
+          console.log(response);
+        });
+      }
+    }
+    teacher.announcement = '';
+  }
 
 }

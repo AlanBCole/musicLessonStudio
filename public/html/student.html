@@ -64,12 +64,22 @@
 
             </div>
 
+
+            <div class="comment-area panel-footer">
+              Studio Announcements:
+              <p ng-repeat="announcement in lesson.studioAnnouncements" class="announcements">{{announcement}}</p>
+
+            </div>
+
+
             <div class="comment-area panel-footer">
               Comments:
-              <p ng-repeat="comment in lesson.teacherComments" class="teacher-comment">
-                {{comment}}
+              <p ng-repeat="comment in lesson.comments"
+              ng-class="{'teacher-comment' : comment.type === 't',
+              'student-comment' : comment.type === 's'}">
+                {{comment.text}}
               </p>
-              <p ng-repeat="comment in lesson.studentComments" class="student-comment">{{comment}}</p>
+
 
               <div class="input-group comment-box">
                 <input id="comment-input" class="form-control" type="text" placeholder="add comment here...">
@@ -79,6 +89,8 @@
                   </button>
                 </span>
               </div>
+
+            </div>
 
             </div> <!-- comment area -->
           </div> <!-- panel being ng-repeated -->
