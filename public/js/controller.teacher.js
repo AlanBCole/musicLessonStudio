@@ -136,14 +136,14 @@ function  tCtrl (studio) {
   }
 
   teacher.teacherUpdate = function () {
-    if (teacher.teacher.password === document.querySelector("#password-confirm").value) {
+    // if (teacher.teacher.password === document.querySelector("#password-confirm").value) 
       studio
       .updateMusician(teacher.teacher)
       .then(function(response){
         console.log(teacher.teacher, response);
       });
       $('#teacherUpdate').modal('hide');
-    }
+
   }
 
 // similar to addComment just using angular/ng-model instead
