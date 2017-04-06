@@ -84,10 +84,10 @@ module.exports = {
           musician[key] = req.body[key];
         }
       }
-      Musician.save(err, doc)=>{
+      musician.save((err, doc)=>{
         res.send(doc)
         console.log('PUT - /api/musician - Update'.blue, req.params);
-      }
+      })
     });
   },
 

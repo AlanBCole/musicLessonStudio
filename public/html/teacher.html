@@ -4,8 +4,15 @@
 
 
       <h2>{{teacher.teacher.firstName}} {{teacher.teacher.lastName}}'s {{teacher.teacher.instrument}} studio</h2>
-      <img class="header-pic" ng-src="{{teacher.teacher.picture}}">
-      <p class="inline-text"><span class="catch-phrase">"{{teacher.teacher.catchPhrase}}"</span></p>
+
+      <div class="row">
+        <div class="col-md-3 col-xs-5">
+          <img class="header-pic" ng-src="{{teacher.teacher.picture}}">
+        </div>
+        <div class="col-md-9 col-xs-7">
+          <p><span class="catch-phrase">"{{teacher.teacher.catchPhrase}}"</span></p>
+        </div>
+      </div>
 
       <div class="text-right">
         <button class="btn btn-warning" type="button" ng-click="teacher.teacherEdit()">Update your Info</button>
@@ -18,9 +25,9 @@
 
     <div class="row student-list">
 
-      <div class="col-xs-1">
+      <!-- <div class="col-xs-1"> -->
         <!-- blank space -->
-      </div>
+      <!-- </div> -->
       <!-- <nav class="col-md-2 col-md-offset-0 col-xs-3"> -->
         <!-- list of students. click on one and show that student's notebook -->
         <!-- <div class="list-group"> -->
