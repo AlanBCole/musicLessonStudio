@@ -31,9 +31,10 @@
     <div class="col-md-6 teachers-thumbnails">
       <h3>Teachers:</h3>
       <div class="thumbnail text-center" ng-repeat="musician in home.musicians" ng-if="musician.teacher">
-        <img ng-src="{{musician.picture}}">
-        <p>{{musician.firstName}} {{musician.lastName}}</p>
-        <p>{{musician.instrument}}</p>
+        <img class="home-pic" ng-src="{{musician.picture}}">
+        <p class="teacher-name">{{musician.firstName}} {{musician.lastName}}</p>
+        <p class="teacher-inst">{{musician.instrument}}</p>
+        <p class="teacher-catch">"{{musician.catchPhrase}}"</p>
       </div>
     </div>
 

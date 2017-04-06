@@ -26,7 +26,7 @@ li {
 }
 
 .invisible {
-  display: none;
+  visibility: hidden;
 }
 /*.guitar {
   background-image: url("/style/early-guitar-body.jpg");
@@ -58,11 +58,24 @@ li {
   bottom: 0;
 }
 
+.home-pic {
+  width: 50%;
+  border-radius: 5px
+}
+
 .header-pic {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  /*height: 150px;*/
   margin-top: 1rem;
-  border-radius: 10px;
+  border-radius: 5px;
+  /*background-size: cover;*/
+}
+
+.catch-phrase {
+  margin-left: 9rem;
+  /*display: inline;*/
+  font-family: 'Caveat', cursive;
+  font-size: 3rem;
 }
 
 .student-list {
@@ -125,6 +138,27 @@ li {
   /*bottom: 0;*/
   margin-top: 1rem;
   /*right: 0;*/
+}
+
+.teacher-name {
+  font-family: 'Caveat', cursive;
+  font-size: 4rem;
+  padding: 5px;
+  margin: 0px;
+}
+
+.teacher-inst {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  padding: 5px;
+  margin: 0px;
+}
+
+.teacher-catch {
+  font-family: 'Caveat', cursive;
+  font-size: 3rem;
+  padding: 5px;
+  margin: 0px;
 }
 
 .teacher-comment {

@@ -4,10 +4,8 @@
 
 
       <h2>{{teacher.teacher.firstName}} {{teacher.teacher.lastName}}'s {{teacher.teacher.instrument}} studio</h2>
-      <img ng-src="{{teacher.teacher.picture}}" class="header-pic">
-      <!-- <blockquote cite="http://">
-
-      </blockquote> -->
+      <img class="header-pic" ng-src="{{teacher.teacher.picture}}">
+      <p class="inline-text"><span class="catch-phrase">"{{teacher.teacher.catchPhrase}}"</span></p>
 
       <div class="text-right">
         <button class="btn btn-warning" type="button" ng-click="teacher.teacherEdit()">Update your Info</button>
@@ -265,6 +263,14 @@
                   <div class="form-group">
                     <label for="picture-url">Picture url</label>
                     <input ng-model="teacher.teacher.picture" class="form-control "type="text" id="picture-url">
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="password">Password</label>
+                    <input ng-model="teacher.teacher.password" class="form-control "type="password" id="password">
+                  </div>
+                  <div class="form-group">
+                    <label for="password-confirm">Password Confirm</label>
+                    <input class="form-control "type="password" id="password-confirm"> -->
                   </div>
                   <button type="submit" class="btn btn-warning">Update</button>
 

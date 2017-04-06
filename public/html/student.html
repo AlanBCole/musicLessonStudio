@@ -4,9 +4,9 @@
     <div class="container relative">
 
 
-        <h2 class="heading-inline">{{student.activeStudent.firstName}}'s {{student.activeStudent.instrument}} lesson notebook</h2><br>
+        <h2 class="heading-inline">{{student.activeStudent.firstName}} {{student.activeStudent.lastName}}'s {{student.activeStudent.instrument}} lesson notebook</h2><br>
         <img ng-src="{{student.activeStudent.picture}}" class="header-pic">
-        <button class="update-btn btn btn-danger" type="button" ng-click="student.studentEdit()">Update your Info</button>
+        <button class="update-btn btn btn-warning" type="button" ng-click="student.studentEdit()">Update your Info</button>
     </div>
   </div>
 
