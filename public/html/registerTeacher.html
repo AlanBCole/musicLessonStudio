@@ -1,0 +1,74 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>Music Lesson Studio</h1>
+    <h3>Register as a teacher below</h3>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-6 col-sm-offset-3 register">
+
+      <h3>Register Here</h3>
+
+      <form ng-submit="home.register.submit($event)">
+
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input ng-model="home.payloads.register.firstName"
+            type="text" class="form-control" id="first-name" placeholder="Jeff">
+        </div>
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input ng-model="home.payloads.register.lastName"
+            type="text" class="form-control" id="last-name" placeholder="Jefferson">
+        </div>
+        <div class="form-group">
+          <label for="instrument">Instrument</label>
+          <input ng-model="home.payloads.register.instrument"
+            type="text" class="form-control" id="instrument" placeholder="guitar" required>
+        </div>
+        <div class="form-group">
+          <label for="e-mail">Email</label>
+          <input ng-model="home.payloads.register.email"
+            type="email" class="form-control" id="e-mail" placeholder="6string@music.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input ng-model="home.payloads.register.phone"
+            type="tel" class="form-control" id="phone" placeholder="303-030-3030">
+        </div>
+        <div class="form-group">
+          <label for="picture">Picture url</label>
+          <input ng-model="home.payloads.register.picture"
+            type="text" class="form-control" id="picture" placeholder="http://yourpic.something">
+        </div>
+        <div class="form-group">
+          <label for="phone">Catch Phrase</label>
+          <input ng-model="home.payloads.register.catchPhrase"
+            type="text" class="form-control" id="catchPhrase" placeholder="Bach's wig looks really warm in Summer.">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input ng-model="home.payloads.register.password"
+          type="password" class="form-control" id="password" placeholder="password" required>
+        </div>
+        <div class="form-group">
+          <label for="password-confirm">Confirm Password</label>
+          <input type="password" class="form-control" id="password-confirm" placeholder="confirm password" required>
+        </div>
+        <div class="checkbox invisible">
+          <label>
+            <input ng-model="home.payloads.register.teacher"
+              type="checkbox" checked> Teacher
+          </label>
+        </div>
+        <button type="submit" class="btn btn-warning" >Submit</button>
+
+      </form>
+
+    </div> <!-- form col -->
+  </div> <!-- row -->
+</div> <!-- container -->

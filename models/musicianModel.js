@@ -18,11 +18,11 @@ var musicianSchema = mongoose.Schema({
       date: {type: Number, default: ()=> Date.now()},
       lessonTheme: String,
       practiceArea: {
-        tonalization: Array,
-        workingPiece: Array,
-        review: Array,
-        listen: Array,
-        other: Array
+        tonalization: {type : Array, default : []},
+        workingPiece: {type : Array, default : []},
+        review: {type : Array, default : []},
+        listen: {type : Array, default : []},
+        other: {type : Array, default : []}
       },
       comments: {type : Array, default : []},
       studioAnnouncements: {type: Array, default : []}

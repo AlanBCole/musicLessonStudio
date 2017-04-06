@@ -57,8 +57,8 @@ function  tCtrl (studio) {
           listen: [],
           other: [],
         },
-        teacherComments: [],
-        studentComments: []
+        comments: [],
+        studioAnnouncements: []
       };
 
     teacher.activeStudent.notebook.unshift(lesson);
@@ -149,13 +149,16 @@ function  tCtrl (studio) {
   teacher.announce = function () {
 
     console.log(teacher.announcement);
+
+    // loops through all students with matching instruments with teacher
     for (var i = 0; i < teacher.students.length; i++) {
 
       if (teacher.students[i].instrument === teacher.teacher.instrument) {
         // console.log(teacher.students[i]);
+    // long notation because this function is triggered outside of notebook div-panels
         teacher.students[i].notebook[0] = teacher.students[i].notebook[0] || {studioAnnouncements : []};
         teacher.students[i].notebook[0].studioAnnouncements.unshift(teacher.announcement);
-        console.log("adding announcement in " + teacher.students[i].firstName + "'s " + teacher.students[i].notebook[0].date) + "notebook";
+        console.log("adding announcement in " + teacher.students[i].firstName + "'s " + teacher.students[i].notebook[0].date + "notebook");
         studio
         .updateMusician(teacher.students[i])
         .then(function(response){

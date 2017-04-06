@@ -24,6 +24,10 @@ li {
 .register {
   margin-bottom: 5rem;
 }
+
+.invisible {
+  display: none;
+}
 /*.guitar {
   background-image: url("/style/early-guitar-body.jpg");
   background-size: cover;
@@ -63,7 +67,7 @@ li {
 
 .student-list {
   /*margin-top: 1rem;*/
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .empty {
@@ -86,7 +90,7 @@ li {
 }
 
 .notebook-heading {
-  margin-top: 1rem;
+  margin-top: 2rem;
   border-top: 1px solid #EEEEEE;
 }
 
