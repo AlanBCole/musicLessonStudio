@@ -78,12 +78,16 @@ module.exports = {
   },
 
   update: (req, res)=>{
-    Musician.update({_id: req.params.id}, req.body, (err, update)=>{
-      if (err) {
-        return res.send(err);
+    Musician.findOne({_id: req.params.id}, (err, musician)=>{
+      for(var key in req.body){
+        if(musician[key] !== req.body[key]) {
+          musician[key] = req.body[key];
+        }
       }
-      res.send(update)
-      console.log('PUT - /api/musician - Update'.blue, req.params);
+      Musician.save(err, doc)=>{
+        res.send(doc)
+        console.log('PUT - /api/musician - Update'.blue, req.params);
+      }
     });
   },
 
