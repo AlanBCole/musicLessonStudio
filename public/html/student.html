@@ -4,9 +4,18 @@
     <div class="container relative">
 
 
-        <h2 class="heading-inline">{{student.activeStudent.firstName}} {{student.activeStudent.lastName}}'s {{student.activeStudent.instrument}} lesson notebook</h2><br>
-        <img ng-src="{{student.activeStudent.picture}}" class="header-pic">
+      <h2 class="heading-inline">{{student.activeStudent.firstName}} {{student.activeStudent.lastName}}'s {{student.activeStudent.instrument}} lesson notebook</h2><br>
+      <div class="row">
+        <div class="col-md-3 col-xs-5">
+          <img ng-src="{{student.activeStudent.picture}}" class="header-pic">
+        </div>
+        <div class="col-md-9 col-xs-7">
+          <p><span class="catch-phrase">"{{student.activeStudent.catchPhrase}}"</span></p>
+        </div>
+      </div>
+      
         <button class="update-btn btn btn-warning" type="button" ng-click="student.studentEdit()">Update your Info</button>
+
     </div>
   </div>
 
