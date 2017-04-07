@@ -23,6 +23,7 @@ function  tCtrl (studio) {
         .then(function(response) {
           console.log('getting teacher...', response.data);
           teacher.teacher = response.data;
+          teacher.getStudents();
         })
   }
   teacher.getTeacher();
@@ -31,11 +32,11 @@ function  tCtrl (studio) {
     studio
       .getMusician()
         .then(function(response) {
-          console.log('getting' + teacher.teacher.instrument + ' students...', response.data);
+          console.log('getting ' + teacher.teacher.instrument + ' students...', response.data);
           teacher.students = response.data;
         })
   }
-  teacher.getStudents();
+
 
   teacher.studentSelected = false;
 
@@ -123,6 +124,7 @@ function  tCtrl (studio) {
 
 // a plain DOM manipulation
   teacher.addComment = function (lesson) {
+    lesson.comments = lesson.comments || []
     var comment = {text: document.getElementById("comment-input").value, type: 't'}
     lesson.comments.push(comment);
     teacher.save("Teacher is commenting...");
@@ -136,7 +138,7 @@ function  tCtrl (studio) {
   }
 
   teacher.teacherUpdate = function () {
-    // if (teacher.teacher.password === document.querySelector("#password-confirm").value) 
+    // if (teacher.teacher.password === document.querySelector("#password-confirm").value)
       studio
       .updateMusician(teacher.teacher)
       .then(function(response){
@@ -158,7 +160,20 @@ function  tCtrl (studio) {
       if (teacher.students[i].instrument === teacher.teacher.instrument) {
         // console.log(teacher.students[i]);
     // long notation because this function is triggered outside of notebook div-panels
-        teacher.students[i].notebook[0] = teacher.students[i].notebook[0] || {studioAnnouncements : []};
+        teacher.students[i].notebook[0] = teacher.students[i].notebook[0] || {
+            date: Date.now(),
+            lessonTheme: "lesson theme",
+            practiceArea: {
+              tonalization: [],
+              workingPiece: [],
+              review: [],
+              listen: [],
+              other: [],
+            },
+            comments: [],
+            studioAnnouncements: []
+          };
+        teacher.students[i].notebook[0].studioAnnouncements = teacher.students[i].notebook[0].studioAnnouncements || []
         teacher.students[i].notebook[0].studioAnnouncements.unshift(teacher.announcement);
         console.log("adding announcement in " + teacher.students[i].firstName + "'s " + teacher.students[i].notebook[0].date + "notebook");
         studio
