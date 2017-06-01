@@ -4,9 +4,18 @@
     <div class="container relative">
 
 
-        <h2 class="heading-inline">{{student.activeStudent.firstName}}'s {{student.activeStudent.instrument}} lesson notebook</h2><br>
-        <img ng-src="{{student.activeStudent.picture}}" class="header-pic">
-        <button class="update-btn btn btn-danger" type="button" ng-click="student.studentEdit()">Update your Info</button>
+      <h2 class="heading-inline">{{student.activeStudent.firstName}} {{student.activeStudent.lastName}}'s {{student.activeStudent.instrument}} lesson notebook</h2><br>
+      <div class="row">
+        <div class="col-md-3 col-xs-5">
+          <img ng-src="{{student.activeStudent.picture}}" class="header-pic">
+        </div>
+        <div class="col-md-9 col-xs-7">
+          <p><span class="catch-phrase">"{{student.activeStudent.catchPhrase}}"</span></p>
+        </div>
+      </div>
+
+        <button class="update-btn btn btn-warning" type="button" ng-click="student.studentEdit()">Update your Info</button>
+
     </div>
   </div>
 
@@ -50,7 +59,7 @@
                 <li ng-repeat="item in lesson.practiceArea.tonalization">{{item.text}}</li>
               </ul>
               <ul><h4>Working Piece:</h4>
-                <li ng-repeat="item in lesson.practiceAre.workingPiece">{{item.text}}</li>
+                <li ng-repeat="item in lesson.practiceArea.workingPiece">{{item.text}}</li>
               </ul>
               <ul><h4>Review:</h4>
                 <li ng-repeat="item in lesson.practiceArea.review">{{item.text}}</li>
@@ -64,12 +73,22 @@
 
             </div>
 
+
+            <div class="comment-area panel-footer">
+              Studio Announcements:
+              <p ng-repeat="announcement in lesson.studioAnnouncements" class="announcements">{{announcement}}</p>
+
+            </div>
+
+
             <div class="comment-area panel-footer">
               Comments:
-              <p ng-repeat="comment in lesson.teacherComments" class="teacher-comment">
-                {{comment}}
+              <p ng-repeat="comment in lesson.comments"
+              ng-class="{'teacher-comment' : comment.type === 't',
+              'student-comment' : comment.type === 's'}">
+                {{comment.text}}
               </p>
-              <p ng-repeat="comment in lesson.studentComments" class="student-comment">{{comment}}</p>
+
 
               <div class="input-group comment-box">
                 <input id="comment-input" class="form-control" type="text" placeholder="add comment here...">
@@ -79,6 +98,8 @@
                   </button>
                 </span>
               </div>
+
+            </div>
 
             </div> <!-- comment area -->
           </div> <!-- panel being ng-repeated -->

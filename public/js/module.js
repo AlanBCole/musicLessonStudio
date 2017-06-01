@@ -10,6 +10,11 @@ function Router ($routeProvider) {
       controller : 'homeController',
       controllerAs : 'home'
     })
+    .when('/registerTeacher', {
+      templateUrl : '/html/registerTeacher.html',
+      controller : 'homeController',
+      controllerAs : 'home'
+    })
     .when('/teacher', {
       templateUrl : '/html/teacher.html',
       controller : 'teacherController',

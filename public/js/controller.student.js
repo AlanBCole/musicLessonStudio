@@ -51,7 +51,7 @@ function sCtrl(studio) {
 
   student.addComment = function(lesson) {
 
-    lesson.studentComments.push(document.getElementById("comment-input").value);
+    lesson.comments.push({text:document.getElementById("comment-input").value, type: 's'});
     student.save("Student or Parent is commenting...");
     document.getElementById("comment-input").value = '';
   }

@@ -12,7 +12,7 @@ function  tCtrl (studio) {
 
   teacher.makeCalendar = function(){
     console.log('Making a calendar!');
-    console.log($('#calendar'));
+    // console.log($('#calendar'));
       studio
         .makeCalendar();
   }
@@ -21,8 +21,9 @@ function  tCtrl (studio) {
     studio
       .loggedIn()
         .then(function(response) {
-          console.log(response.data, 'getting teacher...');
+          console.log('getting teacher...', response.data);
           teacher.teacher = response.data;
+          teacher.getStudents();
         })
   }
   teacher.getTeacher();
@@ -31,11 +32,11 @@ function  tCtrl (studio) {
     studio
       .getMusician()
         .then(function(response) {
-          console.log(response.data, 'getting musicians...');
+          console.log('getting ' + teacher.teacher.instrument + ' students...', response.data);
           teacher.students = response.data;
         })
   }
-  teacher.getStudents();
+
 
   teacher.studentSelected = false;
 
@@ -57,8 +58,8 @@ function  tCtrl (studio) {
           listen: [],
           other: [],
         },
-        teacherComments: [],
-        studentComments: []
+        comments: [],
+        studioAnnouncements: []
       };
 
     teacher.activeStudent.notebook.unshift(lesson);
@@ -84,7 +85,7 @@ function  tCtrl (studio) {
   }
 
   teacher.deleteLesson = function(lesson){
-    var answer = confirm("Are you sure you want to remove this lesson from " + teacher.activeStudent.name + "'s notebook?");
+    var answer = confirm("Are you sure you want to remove this lesson from " + teacher.activeStudent.firstName + "'s notebook?");
 
     if (answer) {
       teacher.activeStudent.notebook.splice(teacher.activeStudent.notebook.indexOf(lesson), 1);
@@ -103,13 +104,17 @@ function  tCtrl (studio) {
     console.log("Editing a " + area + " note...\n" + note.text);
   }
 
-  teacher.noteSave = function (note, area) {
-    note.edit = false;
-    teacher.save("Saving a note to", area);
+  teacher.noteSave = function (note, area, event) {
+    // console.log(event.which);
+    if (event.which === 13) {
+      console.log("Used 'enter' key, #" + event.which + " ...");
+      teacher.save("Saving a note to", area);
+      note.edit = false;
+    }
   }
 
   teacher.deleteNote = function(lesson, note, area){
-    var answer = confirm("Are you sure you want to remove this lesson from " + teacher.activeStudent.name + "'s notebook?");
+    var answer = confirm("Are you sure you want to remove this lesson from " + teacher.activeStudent.firstName + "'s notebook?");
 
     if (answer) {
       lesson.practiceArea[area].splice(lesson.practiceArea[area].indexOf(note), 1);
@@ -117,9 +122,11 @@ function  tCtrl (studio) {
     }
   }
 
+// a plain DOM manipulation
   teacher.addComment = function (lesson) {
-
-    lesson.teacherComments.push(document.getElementById("comment-input").value);
+    lesson.comments = lesson.comments || []
+    var comment = {text: document.getElementById("comment-input").value, type: 't'}
+    lesson.comments.push(comment);
     teacher.save("Teacher is commenting...");
     document.getElementById("comment-input").value = '';
   }
@@ -131,14 +138,52 @@ function  tCtrl (studio) {
   }
 
   teacher.teacherUpdate = function () {
+    // if (teacher.teacher.password === document.querySelector("#password-confirm").value)
       studio
       .updateMusician(teacher.teacher)
       .then(function(response){
         console.log(teacher.teacher, response);
       });
       $('#teacherUpdate').modal('hide');
+
+  }
+
+// similar to addComment just using angular/ng-model instead
+  teacher.announcement = '';
+  teacher.announce = function () {
+
+    console.log(teacher.announcement);
+
+    // loops through all students with matching instruments with teacher
+    for (var i = 0; i < teacher.students.length; i++) {
+
+      if (teacher.students[i].instrument === teacher.teacher.instrument) {
+        // console.log(teacher.students[i]);
+    // long notation because this function is triggered outside of notebook div-panels
+        teacher.students[i].notebook[0] = teacher.students[i].notebook[0] || {
+            date: Date.now(),
+            lessonTheme: "lesson theme",
+            practiceArea: {
+              tonalization: [],
+              workingPiece: [],
+              review: [],
+              listen: [],
+              other: [],
+            },
+            comments: [],
+            studioAnnouncements: []
+          };
+        teacher.students[i].notebook[0].studioAnnouncements = teacher.students[i].notebook[0].studioAnnouncements || []
+        teacher.students[i].notebook[0].studioAnnouncements.unshift(teacher.announcement);
+        console.log("adding announcement in " + teacher.students[i].firstName + "'s " + teacher.students[i].notebook[0].date + "notebook");
+        studio
+        .updateMusician(teacher.students[i])
+        .then(function(response){
+          console.log(response);
+        });
+      }
     }
-
-
+    teacher.announcement = '';
+  }
 
 }

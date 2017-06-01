@@ -54,7 +54,8 @@ function studioFact ($http) {
         googleCalendarApiKey: 'AIzaSyC-f2G7dU42AbawTx4A6Nbx69VNJiBdmuo',
         events: {
           googleCalendarId: 'tvg5ukkqvnqahpo181f7841jp8@group.calendar.google.com'
-        }
+        },
+        nowIndicator: true
     })
   }
 

@@ -3,9 +3,21 @@
   <div class="container relative">
 
 
-      <h2>{{teacher.teacher.firstName}}'s {{teacher.teacher.instrument}} studio</h2>
-      <img ng-src="{{teacher.teacher.picture}}" class="header-pic">
-      <button class="update-btn btn btn-danger" type="button" ng-click="teacher.teacherEdit()">Update your Info</button>
+      <h2>{{teacher.teacher.firstName}} {{teacher.teacher.lastName}}'s {{teacher.teacher.instrument}} studio</h2>
+
+      <div class="row">
+        <div class="col-md-3 col-xs-5">
+          <img class="header-pic" ng-src="{{teacher.teacher.picture}}">
+        </div>
+        <div class="col-md-9 col-xs-7">
+          <p><span class="catch-phrase">"{{teacher.teacher.catchPhrase}}"</span></p>
+        </div>
+      </div>
+
+      <div class="text-right">
+        <button class="btn btn-warning" type="button" ng-click="teacher.teacherEdit()">Update your Info</button>
+      </div>
+
   </div>
 </div>
 
@@ -13,9 +25,9 @@
 
     <div class="row student-list">
 
-      <div class="col-xs-1">
+      <!-- <div class="col-xs-1"> -->
         <!-- blank space -->
-      </div>
+      <!-- </div> -->
       <!-- <nav class="col-md-2 col-md-offset-0 col-xs-3"> -->
         <!-- list of students. click on one and show that student's notebook -->
         <!-- <div class="list-group"> -->
@@ -32,34 +44,61 @@
 
     <div class="row">
 
-      <section ng-init="teacher.makeCalendar()" id="calendar" class="col-md-6 col-xs-12 col-lg-5 col-lg-offset-1">
+      <section class="col-md-6 col-xs-12 col-lg-5 col-lg-offset-1">
+
+        <div class="notebook-heading">
+            <h3>Studio Calendar</h3>
+        <div ng-init="teacher.makeCalendar()" id="calendar" >
+        </div>
+
       </section>
 
       <!-- notebook section  -->
-        <!-- shows when no student is selected  -->
-      <section class="col-md-6 col-xs-12 col-lg-5" ng-show="!teacher.studentSelected">
-        <h3>click on a student's name to see his or her notebook</h3>
-      </section>
+      <section class="col-md-6 col-xs-12 col-lg-5">
+        <div class="notebook-heading">
 
-        <!-- selected student's notebook -->
-      <section class="col-md-6 col-xs-12 col-lg-5" ng-show="teacher.studentSelected">
+          <h3>Make a Studio Announcement</h3>
+          <div class="input-group comment-box">
+            <input ng-model="teacher.announcement" class="form-control" type="text" placeholder="add an announcement here...">
+            <span class="input-group-btn">
+              <button ng-click="teacher.announce()" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </span>
+          </div>
 
-        <div class="page-header">
-          <button ng-click="teacher.newLesson()" class="pull-right btn btn-default add-lesson-btn">
-            <span class="glyphicon glyphicon-plus" ></span>
-          </button>
-          <p class="pull-right add-lesson">add a new lesson</p>
-          <h3>{{teacher.activeStudent.firstName}} {{teacher.activeStudent.lastName}}'s notebook</h3>
         </div>
 
+        <!-- shows when no student is selected  -->
+        <div class="notebook-heading" ng-show="!teacher.studentSelected">
+          <h3>click on a student's name to see his or her notebook</h3>
+        </div>
+
+      <!-- </section> -->
+
+
+      <!-- <section class="col-md-6 col-xs-12 col-lg-5" ng-show="teacher.studentSelected"> -->
+      <!-- selected student's notebook -->
+      <div ng-show="teacher.studentSelected">
+
+        <div class="page-header notebook-heading">
+          <h3>{{teacher.activeStudent.firstName}} {{teacher.activeStudent.lastName}}'s notebook</h3>
+
+          <div class="text-right">
+            <p class="inline-text">add a new lesson</p>
+            <button ng-click="teacher.newLesson()" class="btn btn-default add-lesson-btn">
+              <span class="glyphicon glyphicon-plus" ></span>
+            </button>
+          </div>
+        </div>
 
         <div class="panel panel-default" ng-repeat="lesson in teacher.activeStudent.notebook">
 
           <!-- notebook lesson header -->
           <div class="panel-heading">
             <button ng-click="teacher.deleteLesson(lesson)" type="button" class="close" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-            <h3 class="heading-inline">{{lesson.date | date}}</h3>
-            <h3 class="heading-inline" ng-click="teacher.themeEdit()" ng-show="!teacher.theme"><small>{{lesson.lessonTheme}}</small></h3>
+            <h3 class="inline-text">{{lesson.date | date}}</h3>
+            <h3 class="inline-text" ng-click="teacher.themeEdit()" ng-show="!teacher.theme"><small>{{lesson.lessonTheme}}</small></h3>
             <!-- <input type="text" ng-model="lesson.date" ng-show="teacher.heading" ng-blur="teacher.headingSave()"> -->
             <input type="text" ng-model="lesson.lessonTheme" ng-show="teacher.theme" ng-blur="teacher.themeSave()">
           </div>
@@ -79,7 +118,7 @@
 
                 <!-- div grouping note editing stuff -->
                 <div ng-show="note.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave(note, 'tonalization')" type="text" class="form-control" ng-model="note.text">
+                  <input ng-keyup="teacher.noteSave(note, 'tonalization', $event)" type="text" class="form-control" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'tonalization')" type="button">&times;</button>
                   </span>
@@ -94,7 +133,7 @@
               <li ng-repeat="note in lesson.practiceArea.workingPiece track by $index">
                 <span ng-click="teacher.noteEdit(note, 'workingPiece')" ng-show="!note.edit">{{note.text}}</span>
                 <div ng-show="note.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave(note, 'workingPiece')" type="text" class="form-control" ng-model="note.text">
+                  <input ng-keyup="teacher.noteSave(note, 'workingPiece', $event)" type="text" class="form-control" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'workingPiece')" type="button">&times;</button>
                   </span>
@@ -109,7 +148,7 @@
               <li ng-repeat="note in lesson.practiceArea.review track by $index">
                 <span ng-click="teacher.noteEdit(note, 'review')" ng-show="!note.edit">{{note.text}}</span>
                 <div ng-show="note.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave(note, 'review')" type="text" class="form-control" ng-model="note.text">
+                  <input ng-keyup="teacher.noteSave(note, 'review', $event)" type="text" class="form-control" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'review')" type="button">&times;</button>
                   </span>
@@ -124,7 +163,9 @@
               <li ng-repeat="note in lesson.practiceArea.listen track by $index">
                 <span ng-click="teacher.noteEdit(note, 'listen')" ng-show="!note.edit">{{note.text}}</span>
                 <div ng-show="note.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave(note, 'listen', $event)" type="text" class="form-control" ng-model="note.text">
+
+                  <input ng-keyup="teacher.noteSave(note, 'listen', $event)" type="text" class="form-control" ng-model="note.text">
+
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'listen')" type="button">&times;</button>
                   </span>
@@ -139,7 +180,7 @@
               <li ng-repeat="note in lesson.practiceArea.other track by $index">
                 <span ng-click="teacher.noteEdit(note, 'other')" ng-show="!note.edit">{{note.text}}</span>
                 <div ng-show="note.edit" class="input-group">
-                  <input ng-blur="teacher.noteSave(note, 'other')" type="text" class="form-control" ng-model="note.text">
+                  <input ng-keyup="teacher.noteSave(note, 'other', $event)" type="text" class="form-control" ng-model="note.text">
                   <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="teacher.deleteNote(lesson, note, 'other')" type="button">&times;</button>
                   </span>
@@ -151,9 +192,20 @@
 
 
           <div class="comment-area panel-footer">
+            Studio Announcements:
+            <p ng-repeat="announcement in lesson.studioAnnouncements" class="announcements">{{announcement}}</p>
+
+          </div>
+
+
+          <div class="comment-area panel-footer">
             Comments:
-            <p ng-repeat="comment in lesson.teacherComments" class="teacher-comment">{{comment}}</p>
-            <p ng-repeat="comment in lesson.studentComments" class="student-comment">{{comment}}</p>
+            <p ng-repeat="comment in lesson.comments"
+            ng-class="{'teacher-comment' : comment.type === 't',
+            'student-comment' : comment.type === 's'}">
+              {{comment.text}}
+            </p>
+
 
             <div class="input-group comment-box">
               <input id="comment-input" class="form-control" type="text" placeholder="add comment here...">
@@ -164,11 +216,14 @@
               </span>
             </div>
 
+          </div>
+
           </div> <!-- panel footer/comment -->
 
 
         </div> <!-- entire lesson/panel -->
-      </section> <!-- student notebook -->
+      </div> <!-- student notebook -->
+      </section>
 
     </div> <!-- row -->
   </div> <!-- container fluid -->
@@ -178,7 +233,7 @@
           <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Update Information : {{student.activeStudent.firstName}} {{student.activeStudent.lastName}}</h4>
+                  <h4 class="modal-title" id="myModalLabel"> {{teacher.teacher.firstName}}, update your information.</h4>
               </div>
               <div class="modal-body">
 
@@ -218,6 +273,14 @@
                     <label for="picture-url">Picture url</label>
                     <input ng-model="teacher.teacher.picture" class="form-control "type="text" id="picture-url">
                   </div>
+                  <!-- <div class="form-group">
+                    <label for="password">Password</label>
+                    <input ng-model="teacher.teacher.password" class="form-control "type="password" id="password">
+                  </div>
+                  <div class="form-group">
+                    <label for="password-confirm">Password Confirm</label>
+                    <input class="form-control "type="password" id="password-confirm"> -->
+                  <!-- </div> -->
                   <button type="submit" class="btn btn-warning">Update</button>
 
                 </form>

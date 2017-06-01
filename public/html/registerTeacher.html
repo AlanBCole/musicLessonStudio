@@ -1,26 +1,7 @@
 <div class="jumbotron">
   <div class="container">
     <h1>Music Lesson Studio</h1>
-    <h3>sign in to view your lesson notebook</h3>
-    <p>(or register below)</p>
-
-    <form class="form-inline" ng-submit="home.login.submit($event)">
-
-      <div class="form-group">
-        <label class="sr-only" for="login-email">Email</label>
-        <input ng-model="home.payloads.login.email"
-          type="email" class="form-control" id="login-email" placeholder="low-e@string.com">
-      </div>
-
-      <div class="form-group">
-        <label class="sr-only" for="login-password">Password</label>
-        <input ng-model="home.payloads.login.password"
-          type="password" class="form-control" id="login-password" placeholder="password">
-      </div>
-
-      <button type="submit" class="btn btn-success">Login</button>
-
-    </form>
+    <h3>Register as a teacher below</h3>
 
   </div>
 </div>
@@ -28,17 +9,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-6 teachers-thumbnails">
-      <h3>Teachers:</h3>
-      <div class="thumbnail text-center" ng-repeat="musician in home.musicians" ng-if="musician.teacher">
-        <img class="home-pic" ng-src="{{musician.picture}}">
-        <p class="teacher-name">{{musician.firstName}} {{musician.lastName}}</p>
-        <p class="teacher-inst">{{musician.instrument}}</p>
-        <p class="teacher-catch">"{{musician.catchPhrase}}"</p>
-      </div>
-    </div>
-
-    <div class="col-md-6 register">
+    <div class="col-sm-6 col-sm-offset-3 register">
 
       <h3>Register Here</h3>
 
@@ -57,12 +28,12 @@
         <div class="form-group">
           <label for="instrument">Instrument</label>
           <input ng-model="home.payloads.register.instrument"
-            type="text" class="form-control" id="instrument" placeholder="guitar">
+            type="text" class="form-control" id="instrument" placeholder="guitar" required>
         </div>
         <div class="form-group">
           <label for="e-mail">Email</label>
           <input ng-model="home.payloads.register.email"
-            type="email" class="form-control" id="e-mail" placeholder="6string@music.com">
+            type="email" class="form-control" id="e-mail" placeholder="6string@music.com" required>
         </div>
         <div class="form-group">
           <label for="phone">Phone</label>
@@ -70,20 +41,30 @@
             type="tel" class="form-control" id="phone" placeholder="303-030-3030">
         </div>
         <div class="form-group">
+          <label for="picture">Picture url</label>
+          <input ng-model="home.payloads.register.picture"
+            type="text" class="form-control" id="picture" placeholder="http://yourpic.something">
+        </div>
+        <div class="form-group">
+          <label for="phone">Catch Phrase</label>
+          <input ng-model="home.payloads.register.catchPhrase"
+            type="text" class="form-control" id="catchPhrase" placeholder="Bach's wig looks really warm in Summer.">
+        </div>
+        <div class="form-group">
           <label for="password">Password</label>
           <input ng-model="home.payloads.register.password"
-          type="password" class="form-control" id="password" placeholder="password">
+          type="password" class="form-control" id="password" placeholder="password" required>
         </div>
         <div class="form-group">
           <label for="password-confirm">Confirm Password</label>
-          <input type="password" class="form-control" id="password-confirm" placeholder="confirm password">
+          <input type="password" class="form-control" id="password-confirm" placeholder="confirm password" required>
         </div>
-        <!-- <div class="checkbox">
+        <div class="checkbox">
           <label>
             <input ng-model="home.payloads.register.teacher"
               type="checkbox"> Teacher
           </label>
-        </div> -->
+        </div>
         <button type="submit" class="btn btn-warning" >Submit</button>
 
       </form>
