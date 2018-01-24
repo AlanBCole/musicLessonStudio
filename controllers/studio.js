@@ -55,7 +55,7 @@ module.exports = {
   },
 
   get: (req, res)=>{
-
+    // find a particular musician
     if (req.params.id){
 
       Musician.findOne({_id: req.params.id}, (err, musician)=>{
@@ -66,6 +66,8 @@ module.exports = {
         console.log('GET - /api/musician/:ID - READ'.cyan, req.body);
       });
     }
+
+    // get all musicians
     else {
       Musician.find({}, (err, musicians)=>{
         if (err) {
@@ -73,6 +75,7 @@ module.exports = {
         }
         res.send(musicians);
         console.log('GET - /api/musician - READ-all'.cyan, req.params);
+
       })
     }
   },

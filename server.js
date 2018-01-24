@@ -15,7 +15,7 @@ var app = express();
 
 var sessionsMiddleware = clientSessions({
     cookieName: 'musician-cookie',  // front-end cookie name
-    secret: 'TR@MB@NE',        // the encryption password : keep this safe
+    secret: config.cookieSecret, // the encryption password : keep this safe
     requestKey: 'session',    // req.session,
     cookie: {
         ephemeral: false,     // when true, cookie expires when browser is closed
