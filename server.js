@@ -36,6 +36,6 @@ app.use(
 // gives routes.js use of express 'app' object
 Routes(app);
 
-app.server = app.listen(process.env.PORT || 3000, ()=>{
-  console.log(`Server running on ${process.env.PORT || 3000}`.america);
+app.server = app.listen(process.env.PORT || 80, ()=>{
+  console.log(`Server running on ${process.env.PORT || 80}`.america);
 })
