@@ -14,7 +14,7 @@ most things in the student notebook are read only:
 a student can edit one thing though, at the bottom of every weeks lesson page there is a comment box where he or she can send messages to the teacher. The student's messages are blue.  
 
 ## Teacher Pages
-a teacher logs in the first time by adding /teacher to the url and filling out the form. Afterward he or she can login using just email and password on the home page . 
+a teacher logs in the first time by adding /registerTeacher to the url and filling out the form. Afterward he or she can login using just email and password on the home page . 
 
 most things look similar to the student pages with the exceptions:
   *almost all elements are editable . 
@@ -24,7 +24,7 @@ most things look similar to the student pages with the exceptions:
   *can also make comments at the bottom of each lesson page, the teacher's comments are red . 
   *the calendar is editable but not inside the notebook. Rather that would be done inside google calendar by making a particular calendar public and including its link in the code . 
   *above the weekly lesson pages is a "make an announcement" box .   
-    *When the teacher types here and clicks the '+' there is an announcement is included in every student's most recent lesson      page . 
+    *When the teacher types here and clicks the '+' an announcement is included in every student's most recent lesson      page . 
     
 ##Give it a try!
 
